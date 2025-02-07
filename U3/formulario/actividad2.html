@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Currículum</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: #fff;
+            max-width: 500px;
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin-top: 15px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        button[type="submit"],
+        button[type="reset"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group-inline {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-group-inline label {
+            margin: 0;
+            padding-left: 5px;
+        }
+
+        button[type="submit"],
+        button[type="reset"] {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover,
+        button[type="reset"]:hover {
+            background-color: #45a049;
+        }
+
+        .button-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .button-image img {
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .button-image img:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h1>Formulario de Currículum</h1>
+    <form action="actividad2.php" method="post">
+        
+        <!-- Nombre Completo -->
+        <label for="nombre">Nombre Completo:</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <!-- Correo Electrónico -->
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" id="email" name="email" required>
+
+        <!-- Teléfono -->
+        <label for="telefono">Teléfono:</label>
+        <input type="tel" id="telefono" name="telefono" required>
+
+        <!-- Género (Grupo de botones de opción) -->
+        <label>Género:</label>
+        <div class="form-group-inline">
+            <input type="radio" id="genero_masculino" name="genero" value="Masculino" required>
+            <label for="genero_masculino">Masculino</label>
+        </div>
+        <div class="form-group-inline">
+            <input type="radio" id="genero_femenino" name="genero" value="Femenino">
+            <label for="genero_femenino">Femenino</label>
+        </div>
+        <div class="form-group-inline">
+            <input type="radio" id="genero_otro" name="genero" value="Otro">
+            <label for="genero_otro">Otro</label>
+        </div>
+
+        <!-- Habilidades (Casillas de verificación) -->
+        <label>Habilidades:</label>
+        <div class="form-group-inline">
+            <input type="checkbox" id="habilidad_html" name="habilidades[]" value="HTML">
+            <label for="habilidad_html">HTML</label>
+        </div>
+        <div class="form-group-inline">
+            <input type="checkbox" id="habilidad_css" name="habilidades[]" value="CSS">
+            <label for="habilidad_css">CSS</label>
+        </div>
+        <div class="form-group-inline">
+            <input type="checkbox" id="habilidad_js" name="habilidades[]" value="JavaScript">
+            <label for="habilidad_js">JavaScript</label>
+        </div>
+        <div class="form-group-inline">
+            <input type="checkbox" id="habilidad_php" name="habilidades[]" value="PHP">
+            <label for="habilidad_php">PHP</label>
+        </div>
+
+        <!-- Nivel de Estudios (Lista de selección única) -->
+        <label for="nivel_estudios">Nivel de Estudios:</label>
+        <select id="nivel_estudios" name="nivel_estudios" required>
+            <option value="">Seleccione una opción</option>
+            <option value="bachillerato">Bachillerato</option>
+            <option value="licenciatura">Licenciatura</option>
+            <option value="maestria">Maestría</option>
+            <option value="doctorado">Doctorado</option>
+        </select>
+
+        <!-- Idiomas (Lista de selección múltiple) -->
+        <label for="idiomas">Idiomas:</label>
+        <select id="idiomas" name="idiomas[]" multiple size="4" required>
+            <option value="español">Español</option>
+            <option value="ingles">Inglés</option>
+            <option value="frances">Francés</option>
+            <option value="aleman">Alemán</option>
+            <option value="italiano">Italiano</option>
+        </select>
+
+        <!-- Botones de Validación y Reset -->
+        <button type="submit">Enviar Currículum</button>
+        <button type="reset">Limpiar Formulario</button>
+
+        <!-- Botón de Imagen -->
+        <div class="button-image">
+            <button type="submit" style="background: none; border: none;">
+                <img src="enviar.png" alt="Enviar">
+            </button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

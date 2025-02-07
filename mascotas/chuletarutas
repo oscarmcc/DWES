@@ -1,0 +1,16 @@
+primera /
+accion: indexAction muestra todos los perros
+
+segunda /add
+accion: addAction  añade un nuevo perro
+
+tercera /del/nº
+accion: delAction borrar perro
+
+cuarta /edit/nº
+accion: editAction editar un perro
+
+quinta /search?q=wherever
+accion: searchAction buscar un perro
+
+controlador: perrosControllerr

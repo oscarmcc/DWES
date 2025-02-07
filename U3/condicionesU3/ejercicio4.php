@@ -1,0 +1,152 @@
+<?php
+// Definir la imagen de cabecera según la estación del año
+$month = date("n");
+if ($month >= 3 && $month <= 5) {
+    // Primavera
+    $headerImage = "imagen/primavera.png";
+} elseif ($month >= 6 && $month <= 8) {
+    // Verano
+    $headerImage = "imagen/verano.png";
+} elseif ($month >= 9 && $month <= 11) {
+    // Otoño
+    $headerImage = "imagen/otoño.png";
+} else {
+    // Invierno
+    $headerImage = "imagen/invierno.png";
+}
+
+// Definir el color de fondo según la hora del día
+$hour = date("H");
+if ($hour >= 6 && $hour < 12) {
+    // Mañana
+    $backgroundColor = "#FFF9E3"; 
+} elseif ($hour >= 12 && $hour < 18) {
+    // Tarde
+    $backgroundColor = "#E28413";
+} else {
+    // Noche
+    $backgroundColor = "#2C3E50";
+}
+?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Mi Portafolio</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: <?php echo $backgroundColor; ?>;
+        }
+
+        header {
+            background-image: url('<?php echo $headerImage; ?>');
+            background-size: cover;
+            color: white;
+            padding: 50px;
+            text-align: center;
+        }
+
+        nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        nav a {
+            margin: 0 15px;
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            color: #007BFF;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        section {
+            margin: 40px 0;
+        }
+
+        .skills {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .skills div {
+            background: white;
+            padding: 20px;
+            margin: 10px;
+            width: 30%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bienvenido a Mi Portafolio</h1>
+        <p>Mi nombre es Óscar y soy Diseñador Web</p>
+    </header>
+
+    <nav>
+        <a href="#sobre-mi">Sobre Mí</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
+
+    <div class="container">
+        <section id="sobre-mi">
+            <img src="images/Captura de pantalla 2024-09-19 103127.png" alt="foto de perfil" width="200px">
+            <h2>Sobre Mí</h2>
+            <p>Hola, soy Óscar, un Diseñador Web con experiencia en Frontend. Mi objetivo es crear soluciones innovadoras y eficientes.</p>
+        </section>
+
+        <section id="habilidades">
+            <h2>Habilidades</h2>
+            <div class="skills">
+                <div>
+                    <h3>HTML/CSS</h3>
+                    <p>Experto en crear interfaces web responsivas.</p>
+                </div>
+                <div>
+                    <h3>JavaScript</h3>
+                    <p>Sólido conocimiento en programación web.</p>
+                </div>
+                <div>
+                    <h3>Diseño UI/UX</h3>
+                    <p>Experiencia en diseño de experiencias de usuario amigables.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <p>Puedes contactarme en: 682 669 306</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2024 Mi Portafolio. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
