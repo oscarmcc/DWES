@@ -8,15 +8,16 @@ class Router
     {
         $this->routes[] = $route;
     }
-    public function match(string $request) // recibe un string $request
+    public function match(string $request, string $userRole) // recibe un string $request y el rol del usuario
     {
-        $matches = array();
         foreach ($this->routes as $route) {
             $patron = $route['path']; // saca el path de la ruta
             if (preg_match($patron, $request)) { // compara con expresiones regulares el patrón con la entrada
-                $matches = $route;
+                if (in_array($userRole, $route['roles'])) { // verifica si el rol del usuario está permitido para esta ruta
+                    return $route;
+                }
             }
         }
-        return $matches;
+        return null; // si no hay coincidencia, devuelve null
     }
 }

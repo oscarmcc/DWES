@@ -45,6 +45,7 @@ class SesionController extends BaseController
             $_SESSION['nombre'] = $resultado[0]['nombre'];
             $_SESSION['apellidos'] = $resultado[0]['apellidos'];
             $_SESSION['id'] = $resultado[0]['id'];
+            $_SESSION['rol']='user';
             header('Location: /');
             exit();
         } else {
