@@ -1,0 +1,84 @@
+:root{
+    --color-primario:#339989;
+    --color-secundario:#ffa17a;
+}
+
+header{
+    background-color: var(--color-primario);
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+header nav{
+    align-items: center;
+}
+
+header ul{
+    font-size: 1.25vw;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+header ul li{
+    padding: 10px;
+    border-radius: 10px;
+    transition: background-color 0.5s ease, transform 0.5s ease;
+}
+
+header ul li a{
+    text-decoration: none;
+    color: white;
+}
+
+header ul li:hover{
+    background-color: var(--color-secundario);
+    transform: translateY(-5px);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+form input{
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+form{
+    background-color: var(--color-secundario);
+    border: 5px solid var(--color-primario);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#submit{
+    background-color: var(--color-secundario);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.5s ease, transform 0.5s ease;
+}
+
+#submit:hover{
+    background-color: var(--color-primario);
+    transform: translateY(-5px);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+main p{
+    font-size: 1.5vw;
+    color: red;
+}

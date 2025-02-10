@@ -90,7 +90,7 @@ class Users extends DBAbstractModel
         $this->mensaje = 'Usuarios no encontrados';
         return null;
     }
-    public function getUsuarioEmail($email, ){
+    public function getUsuarioEmail($email){
         $this->query = "SELECT * FROM usuarios WHERE email=:email";
         $this->parametros['email'] = $email;
         $this->get_results_from_query();

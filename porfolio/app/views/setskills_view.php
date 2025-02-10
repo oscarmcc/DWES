@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/setskill.css">
     <title>Añadir Skills</title>
 </head>
 <body>
-    <h1>Añadir Skills</h1>
-    <button><a href="/perfil/">Mi Perfil</a></button>
-    <button><a href="/logout/">Logout</a></button>
-    <button><a href="/">Principal</a></button>
-    <button><a href="/eliminar/">Eliminar Perfil</a></button>
-    <br>
+<header>
+        <h1>Añadir Proyecto</h1>
+        <nav>
+    <ul>
+    <li><a href="/perfil/">Mi Perfil</a></li>
+    <li><a href="/logout/">Logout</a></li>
+    <li><a href="/">Principal</a></li>
+    <li><a href="/eliminar/">Eliminar Perfil</a></li>
+    </ul>
+    </nav>
+    </header>
+    <main>
+        <h2>Formulario</h2>
     <form action="" method="post">
         <label for="habilidades">Habilidades</label>
         <input type="text" name="habilidades" id="habilidades" value="">
@@ -25,12 +34,13 @@
         }
         ?>
         
-        <input type="submit" value="Añadir">
+        <input type="submit" value="Añadir" id="submit">
     </form>
     <?php
     if(isset($data['error'])){
         echo $data['error'];
     }
     ?>
+    </main>
 </body>
 </html>

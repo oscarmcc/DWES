@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/miperfil_view.css">
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
     <title>Perfil de <?php echo htmlspecialchars($data['nombre']); ?></title>
 </head>
 
@@ -38,6 +39,9 @@
             <p>Email: <?php echo htmlspecialchars($data['email']); ?></p>
             <p>Categoría profesional: <?php echo htmlspecialchars($data['categoria_profesional']); ?></p>
             <p>Resumen del perfil: <?php echo htmlspecialchars($data['resumen_perfil']); ?></p>
+            <ul>
+                <li><a href="/modificarusuario/">Modificar</a></li>
+            </ul>
             </div>
         </article>
     </section>
@@ -106,13 +110,15 @@
                     <?php else: ?>
                         <p>No hay logros disponibles.</p>
                     <?php endif; ?>
-                    <button><a href="/eliminarTrabajo/<?php echo $data['idtrabajos'][$index]; ?>">Eliminar</a></button>
-                    <button><a href="/modificarTrabajo/<?php echo $data['idtrabajos'][$index]; ?>">Modificar</a></button>
+                    <ul>
+                    <li><a href="/eliminarTrabajo/<?php echo $data['idtrabajos'][$index]; ?>">Eliminar</a></li>
+                    <li><a href="/modificarTrabajo/<?php echo $data['idtrabajos'][$index]; ?>">Modificar</a></li>
                     <?php if ($data['visibletrabajos'][$index] == 1): ?>
-                        <button><a href="/visibilizarTrabajo/<?php echo $data['idtrabajos'][$index]; ?>">No visibilizar</a></button>
+                        <li><a href="/visibilizarTrabajo/<?php echo $data['idtrabajos'][$index]; ?>">No visibilizar</a></li>
                     <?php else: ?>
-                        <button><a href="/visibilizarTrabajo/<?php echo $data['idtrabajos'][$index]; ?>">Visibilizar</a></button>
+                        <li><a href="/visibilizarTrabajo/<?php echo $data['idtrabajos'][$index]; ?>">Visibilizar</a></li>
                     <?php endif; ?>
+                    </ul>
                 </article>
             <?php endforeach; ?>
         <?php else: ?>
@@ -139,13 +145,15 @@
                     <?php else: ?>
                         <p>No hay tecnologías disponibles.</p>
                     <?php endif; ?>
-                    <button><a href="/eliminarProyecto/<?php echo $data['idproyectos'][$index]; ?>">Eliminar</a></button>
-                    <button><a href="/modificarProyecto/<?php echo $data['idproyectos'][$index]; ?>">Modificar</a></button>
+                    <ul>
+                    <li><a href="/eliminarProyecto/<?php echo $data['idproyectos'][$index]; ?>">Eliminar</a></li>
+                    <li><a href="/modificarProyecto/<?php echo $data['idproyectos'][$index]; ?>">Modificar</a></li>
                     <?php if ($data['visibleproyectos'][$index] == 1): ?>
-                        <button><a href="/visibilizarProyecto/<?php echo $data['idproyectos'][$index]; ?>">No visibilizar</a></button>
+                        <li><a href="/visibilizarProyecto/<?php echo $data['idproyectos'][$index]; ?>">No visibilizar</a></li>
                     <?php else: ?>
-                        <button><a href="/visibilizarProyecto/<?php echo $data['idproyectos'][$index]; ?>">Visibilizar</a></button>
+                        <li><a href="/visibilizarProyecto/<?php echo $data['idproyectos'][$index]; ?>">Visibilizar</a></li>
                     <?php endif; ?>
+                    </ul>
                 </article>
             <?php endforeach; ?>
         <?php else: ?>

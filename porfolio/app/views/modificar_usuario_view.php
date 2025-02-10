@@ -3,12 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../css/modificarusuario.css">
     <title>Modificar Perfil</title>
 </head>
 <body>
-    <h1>Modificar Perfil</h1>
-    <button><a href="/perfil/">Volver a Mi Perfil</a></button>
-    <button><a href="/logout/">Logout</a></button>
+<header>
+        <h1>Modificar Perfil</h1>
+        <nav>
+    <ul>
+    <li><a href="/perfil/">Mi Perfil</a></li>
+    <li><a href="/logout/">Logout</a></li>
+    <li><a href="/">Principal</a></li>
+    <li><a href="/eliminar/">Eliminar Perfil</a></li>
+    </ul>
+    </nav>
+    </header>
+    <main>
+        <h2>Formulario</h2>
     <form method="post" enctype="multipart/form-data">
     <label for="nombre">Nombre</label>
         <input type="text" name="nombre" id="nombre" value="<?php echo $data['usuario']['nombre']; ?>">
@@ -22,7 +34,8 @@
         <input type="email" name="email" id="email" value="<?php echo $data['usuario']['email']; ?>">
         <label for="resumen_perfil">Resumen Perfil</label>
         <textarea name="resumen_perfil" id="resumen_perfil"><?php echo $data['usuario']['resumen_perfil']; ?></textarea>
-        <input type="submit" name="modificar" value="Modificar">
+        <input type="submit" name="modificar" value="Modificar" id="modificar">
     </form>
+    </main>
 </body>
 </html>
