@@ -26,7 +26,7 @@ $router = new Router();
 
 $router->add(array(
     'name'=>'primera',
-    'path'=>'/^\/$/',
+    'path' => '/^\/(\?.*)?$/',
     'action'=>[MostrarController::class, 'indexAction'],
     'roles'=>['invitado', 'user']
 ));
@@ -44,6 +44,9 @@ $router->add(array(
     'action'=>[SesionController::class, 'registrerAction'],
     'roles'=>['invitado']
 ));
+// $router->add([ 'name' => 'Para verfificar la cuenta',
+//                 'path' => '/^\/verificacion(\/|\?token=)[\w\|.\+\-\/=]+$/',
+//                 'action' => [SesionController::class, 'verificarAction']]);
 
 $router->add(array(
     'name'=>'Logout',

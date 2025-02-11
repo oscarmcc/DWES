@@ -16,25 +16,14 @@
         </nav>
     </header>
     <section class="general">
+        <h2>Información general</h2>
         <article>
-            <h2>Información general</h2>
             <img src="<?php echo htmlspecialchars($data['foto']); ?>" alt="Foto de perfil">
             <p>Nombre: <?php echo htmlspecialchars($data['nombre']); ?></p>
             <p>Apellidos: <?php echo htmlspecialchars($data['apellidos']); ?></p>
             <p>Email: <?php echo htmlspecialchars($data['email']); ?></p>
             <p>Categoría profesional: <?php echo htmlspecialchars($data['categoria_profesional']); ?></p>
             <p>Resumen del perfil: <?php echo htmlspecialchars($data['resumen_perfil']); ?></p>
-
-            <h2>Redes Sociales</h2>
-            <?php if (!empty($data['redessociales'])): ?>
-                <ul>
-                    <?php foreach ($data['redessociales'] as $index => $red): ?>
-                        <li><a href="<?php echo htmlspecialchars($data['redessocialesurl'][$index]); ?>"><?php echo htmlspecialchars($red); ?></a></li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php else: ?>
-                <p>No hay redes sociales disponibles.</p>
-            <?php endif; ?>
         </article>
     </section>
 
@@ -81,16 +70,16 @@
 
     <section class="proyectos">
         <h2>Proyectos</h2>
-        <?php if (!empty($data['titulo'])): ?>
-            <?php foreach ($data['titulo'] as $index => $proyecto): ?>
+        <?php if (!empty($data['proyectos'])): ?>
+            <?php foreach ($data['proyectos'] as $index => $proyecto): ?>
                 <article>
-                    <h3><?php echo htmlspecialchars($proyecto); ?></h3>
-                    <p><?php echo htmlspecialchars($data['descripcion'][$index]); ?></p>
+                    <h3><?php echo htmlspecialchars($proyecto['titulo']); ?></h3>
+                    <p><?php echo htmlspecialchars($proyecto['descripcion']); ?></p>
                     <h4>Tecnologías utilizadas:</h4>
-                    <?php if (!empty($data['tecnologias'][$index])): ?>
+                    <?php if (!empty($proyecto['tecnologias'])): ?>
                         <ul>
                             <?php 
-                            $tecnologias = explode(',', $data['tecnologias'][$index]);
+                            $tecnologias = explode(',', $proyecto['tecnologias']);
                             foreach ($tecnologias as $tecnologia): ?>
                                 <li><?php echo htmlspecialchars(trim($tecnologia)); ?></li>
                             <?php endforeach; ?>

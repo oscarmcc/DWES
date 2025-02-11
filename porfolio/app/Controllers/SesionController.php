@@ -2,7 +2,7 @@
 // le asiganmos un espacio de nombres e importamos la clase Users con el espacio de nombres que le hemos asignado
 namespace App\Controllers;
 use App\Model\Users;
-use Symfony\Component\Mime\Email;
+use App\Core\EmailSender;
 class SesionController extends BaseController
 {
     public function loginAction()
@@ -41,9 +41,6 @@ class SesionController extends BaseController
 
         // Verificar la contraseña ingresada con el hash almacenado
         if (password_verify($data['passwd'], $resultado[0]['passwd'])) {
-            $_SESSION['email'] = $resultado[0]['email'];
-            $_SESSION['nombre'] = $resultado[0]['nombre'];
-            $_SESSION['apellidos'] = $resultado[0]['apellidos'];
             $_SESSION['id'] = $resultado[0]['id'];
             $_SESSION['rol']='user';
             header('Location: /');
@@ -60,7 +57,7 @@ class SesionController extends BaseController
     public function registrerAction() {
         $lprocesaFormulario = false;
         $data = array();
-        $data['nombre'] = $data['apellidos'] = $data['email'] = $data['password']= $data['passwordConfirmation'] = $data['resumen_perfil'] = $data['categoria_profesional'] = $data['picture'] = '';
+        $data['nombre'] = $data['apellidos'] = $data['email'] = $data['password']= $data['passwordConfirmation'] = $data['resumen_perfil'] = $data['categoria_profesional'] = $data['picture'] = $data['token']='';
         $data['msjErrorNombre'] = $data['msjErrorApellidos'] = $data['msjErrorEmail'] = $data['msjErrorPassword'] = $data['msjErrorCategoriaProfesional'] = $data['msjErrorResumenPerfil'] = $data['msjErrorImagen'] = '';
     
         if (!empty($_POST)) {
@@ -156,7 +153,14 @@ class SesionController extends BaseController
             } else {
                 $foto = null;
             }
-    
+
+            $rb = random_bytes(32);
+            $token  = base64_encode($rb);
+            $secureToken = uniqid('',true) . $token;
+            $data['token'] = $secureToken;
+
+
+            $usuario1->setToken($data['token']);
             $usuario1->setNombre($data['nombre']);
             $usuario1->setApellidos($data['apellidos']);
             $usuario1->setEmail($data['email']);
@@ -179,7 +183,23 @@ class SesionController extends BaseController
             session_destroy();
             header('Location: /');
         }
-    
+        
+        // public function verificarAction(){
+        //     $token=explode('/', string: $_SERVER['REQUEST_URI'][2]);
+
+        //     $token = array_slice($token, 2);
+        //     $token = implode('/', $token);
+
+        //     $usuario = Users::getInstancia();
+        //     $usuario->verificarToken($token);
+
+        //     if ($usuario->getMensaje() == 'Usuario verificado'){
+        //         header('Location: /login/');
+        //     }else{
+        //         echo "<h2>" . $usuario->getMensaje() . "</h2>";
+        //     header('Location: /login');
+        //     }
+        // }
     }
 
 ?>

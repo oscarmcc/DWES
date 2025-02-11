@@ -6,8 +6,8 @@
     <title>Buscador</title>
 </head>
 <body>
-    <form method="post">
-        <input type="text" name="buscador">
+    <form method="get">
+        <input type="text" name="nombre" placeholder="Nombre">
         <button type="submit" name="buscar" value="buscar">Buscar</button>
     </form>
 </body>

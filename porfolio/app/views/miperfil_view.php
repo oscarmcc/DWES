@@ -146,12 +146,12 @@
                         <p>No hay tecnologías disponibles.</p>
                     <?php endif; ?>
                     <ul>
-                    <li><a href="/eliminarProyecto/<?php echo $data['idproyectos'][$index]; ?>">Eliminar</a></li>
-                    <li><a href="/modificarProyecto/<?php echo $data['idproyectos'][$index]; ?>">Modificar</a></li>
-                    <?php if ($data['visibleproyectos'][$index] == 1): ?>
-                        <li><a href="/visibilizarProyecto/<?php echo $data['idproyectos'][$index]; ?>">No visibilizar</a></li>
+                    <li><a href="/eliminarProyecto/<?php echo $proyecto['id']; ?>">Eliminar</a></li>
+                    <li><a href="/modificarProyecto/<?php echo $proyecto['id']; ?>">Modificar</a></li>
+                    <?php if ($proyecto['visible'] == 1): ?>
+                        <li><a href="/visibilizarProyecto/<?php echo $proyecto['id']; ?>">No visibilizar</a></li>
                     <?php else: ?>
-                        <li><a href="/visibilizarProyecto/<?php echo $data['idproyectos'][$index]; ?>">Visibilizar</a></li>
+                        <li><a href="/visibilizarProyecto/<?php echo $proyecto['id']; ?>">Visibilizar</a></li>
                     <?php endif; ?>
                     </ul>
                 </article>
@@ -162,7 +162,3 @@
     </section>
 </body>
 </html>
-
-<?php
-// var_dump($data);
-?>

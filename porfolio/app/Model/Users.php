@@ -2,6 +2,11 @@
 namespace App\Model;
 require_once('DBAbstractModel.php');
 
+use App\Model\Trabajos;
+use App\Model\Proyectos;
+use App\Model\Skills;
+use App\Model\Redes;
+
 class Users extends DBAbstractModel
 {
     /*CONSTRUCCIÓN DEL MODELO SINGLETON*/
@@ -78,6 +83,45 @@ class Users extends DBAbstractModel
     {
         $this->cuenta_activa = $cuenta_activa;
     }
+    
+    public function getMensaje(){
+        return $this->mensaje;
+    }
+
+    // Función para comprobar que la cuenta del usuario esta activa o no
+    // public function estaActivo($email){
+    //     $this->query = "SELECT cuenta_activa FROM usuarios WHERE email = :email";
+    //     $this->parametros['email'] = $email;
+    //     $this->get_results_from_query();
+    //     if ($this->rows[0]['cuenta_activa'] == 1) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
+    // public function verificarToken($token = ''){
+    //     $this->query = "SELECT * FROM usuarios WHERE token = :token";
+    //     $this->parametros['token'] = $token;
+    //     $this->get_results_from_query();
+    //     // var_dump($token);die();
+    //     if(count($this->rows) == 1){
+    //        // Comprobar si el token ha caducado
+    //         $this->fecha_creacion_token = $this->rows[0]['fecha_creacion_token'];
+    //         $fecha_actual = date('Y-m-d H:i:s');
+    //         $diferencia = strtotime($fecha_actual) - strtotime($this->fecha_creacion_token);
+    //         if ($diferencia < 86400) {
+    //             $this->query = "UPDATE usuarios SET token = NULL, fecha_creacion_token = NULL, visible = 1 , cuenta_activa = 1 WHERE token = :token";
+    //             $this->parametros['token'] = $token;
+    //             $this->get_results_from_query();
+    //             $this->mensaje = 'Usuario verificado';
+    //         } else {
+    //             $this->mensaje = 'El token ha caducado';
+    //         }
+    //     } else {
+    //         $this->mensaje = 'Token no encontrado';
+    //     }
+    // }
 
     public function getAll()
     {
@@ -145,30 +189,31 @@ class Users extends DBAbstractModel
         $this->parametros['created_at'] = date('Y-m-d H:i:s', $fecha->getTimestamp());
         $this->parametros['fecha_creacion_token']= date('Y-m-d H:i:s', $fecha->getTimestamp());
         $this->parametros['cuenta_activa']= 1;
-
-        $rb = random_bytes(32);
-        $token  = base64_encode($rb);
-        $secureToken = uniqid('',true) . $token;
-        $this->parametros['token'] = $secureToken;
+        $this->parametros['token'] = $this->token;
         $this->get_results_from_query();
         $this->mensaje = 'Usuario añadido.';
     }
 
     public function get($id=''){
-        if($id != ''){
-            $this->query = "SELECT * FROM usuarios WHERE id = :id";
-            $this->parametros['id'] = $id;
-            $this->get_results_from_query();
-            if(count($this->rows) == 1){
-                foreach ($this->rows[0] as $propiedad=>$valor){
-                    $this->$propiedad = $valor;
-                }
-                $this->mensaje = 'Usuario encontrado';
-        }else{
-            $this->mensaje = 'Usuario no encontrado';
+        $this->query = "SELECT * FROM usuarios WHERE id = :id";
+        $this->parametros['id'] = $id;
+        $this->get_results_from_query();
+        if (count($this->rows) == 1) {
+            foreach ($this->rows[0] as $propiedad=>$valor) {
+                // $this->$propiedad = $valor;
+            }
+            $this->mensaje = 'Usuario encontrada';
+        } else {
+            $this->mensaje = 'Usuario no encontrada';
         }
-        return $this->rows[0]??null;
-    }}
+        $usuario = $this->rows[0] ?? null;
+
+        // Obtengo los trabajos, proyectos, skills, redes sociales.
+        $usuario['trabajos'] = Trabajos::getInstancia()->getTrabajaosByUsuarioId($id);
+        $usuario['proyectos'] = Proyectos::getInstancia()->getProyectosByUsuarioId($id);
+        $usuario['skills'] = Skills::getInstancia()->get($id);
+        $usuario['redes'] = Redes::getInstancia()->getRedesByUsuarioId($id);
+        return $usuario ?? null;}
     
     public function edit($id=''){
         $fecha =new \Datetime();
