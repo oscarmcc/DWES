@@ -11,7 +11,6 @@
         <input type="password" name="passwd" placeholder="Contraseña" value="">
         <button type="submit" name="login" value="login">Login</button>
         <button><a href="/">Volver</a></button>
-        <button><a href="/logout/">logout</a></button>
     </form>
 </body>
 </html>

@@ -73,13 +73,19 @@ class Skills extends DBAbstractModel
             $this->parametros['usuarios_id'] = $usuario_id;
             $this->get_results_from_query();
             if(count($this->rows) > 0){
-                $this->mensaje = 'Skills encontradas';
+                $this->mensaje = 'Habilidades encontradas';
                 return $this->rows;
             }
-            $this->mensaje = 'Skills no encontradas';
+            $this->mensaje = 'Skill no encontrada';
             return [];
         }
-        $this->mensaje = 'Usuario no encontrado';
+        $this->query = "SELECT * FROM skills";
+        $this->get_results_from_query();
+        if(count($this->rows) > 0){
+            $this->mensaje = 'Skills encontradas';
+            return $this->rows;
+        }
+        $this->mensaje = 'Skills no encontradas';
         return [];
     }
 

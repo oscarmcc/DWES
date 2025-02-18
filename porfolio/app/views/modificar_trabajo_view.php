@@ -1,5 +1,5 @@
 <?php
-var_dump($data['trabajo']['logros']);
+// var_dump($data['trabajo']['logros']);
 ?>
 
 

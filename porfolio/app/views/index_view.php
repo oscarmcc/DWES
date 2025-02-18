@@ -6,9 +6,25 @@
     <title>Buscador</title>
 </head>
 <body>
+<?php
+
+// Comprobamos si la sesion está iniciada
+if (empty($_SESSION['id'])) {
+    ?>
+    <button><a href="/registro/">Registrarse</a></button>
+    <button><a href="/login/">Login</a></button>
+    <?php
+} else {
+    ?>
+    <button><a href="/logout/">Logout</a></button>
+    <button><a href="/perfil/">Mi Perfil</a></button>
+    <?php
+}
+?>
+
     <form method="get">
-        <input type="text" name="nombre" placeholder="Nombre">
-        <button type="submit" name="buscar" value="buscar">Buscar</button>
+        <input type="text" name="nombre" placeholder="Nombre del usuario">
+        <button type="submit">Buscar</button>
     </form>
 </body>
 </html>
@@ -20,11 +36,9 @@
 if (isset($data['error'])) {
     echo $data['error'];
 } else {
-    if (isset($data['usuarios']) && count($data['usuarios']) > 0) {
         foreach ($data['usuarios'] as $usuario) {
             if ($usuario['visible'] == 1) {
                 echo '<img src="./upload/' . $usuario['foto'] . '" alt="foto">';
-                echo 'ID: ' . $usuario['id'] . '<br>';
                 echo 'Nombre: ' . $usuario['nombre'] . '<br>';
                 echo 'Apellidos: ' . $usuario['apellidos'] . '<br>';
                 echo 'Email: ' . $usuario['email'] . '<br>';
@@ -35,8 +49,5 @@ if (isset($data['error'])) {
                 echo '<hr>';
             }
         }
-    } else {
-        echo 'No se encontraron usuarios.';
     }
-}
 ?>

@@ -88,40 +88,45 @@ class Users extends DBAbstractModel
         return $this->mensaje;
     }
 
-    // Función para comprobar que la cuenta del usuario esta activa o no
-    // public function estaActivo($email){
-    //     $this->query = "SELECT cuenta_activa FROM usuarios WHERE email = :email";
-    //     $this->parametros['email'] = $email;
-    //     $this->get_results_from_query();
-    //     if ($this->rows[0]['cuenta_activa'] == 1) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
+    //Función para comprobar que la cuenta del usuario esta activa o no
+    public function estaActivo($email){
+        $this->query = "SELECT cuenta_activa FROM usuarios WHERE email = :email";
+        $this->parametros['email'] = $email;
+        $this->get_results_from_query();
+        if ($this->rows[0]['cuenta_activa'] == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
-    // public function verificarToken($token = ''){
-    //     $this->query = "SELECT * FROM usuarios WHERE token = :token";
-    //     $this->parametros['token'] = $token;
-    //     $this->get_results_from_query();
-    //     // var_dump($token);die();
-    //     if(count($this->rows) == 1){
-    //        // Comprobar si el token ha caducado
-    //         $this->fecha_creacion_token = $this->rows[0]['fecha_creacion_token'];
-    //         $fecha_actual = date('Y-m-d H:i:s');
-    //         $diferencia = strtotime($fecha_actual) - strtotime($this->fecha_creacion_token);
-    //         if ($diferencia < 86400) {
-    //             $this->query = "UPDATE usuarios SET token = NULL, fecha_creacion_token = NULL, visible = 1 , cuenta_activa = 1 WHERE token = :token";
-    //             $this->parametros['token'] = $token;
-    //             $this->get_results_from_query();
-    //             $this->mensaje = 'Usuario verificado';
-    //         } else {
-    //             $this->mensaje = 'El token ha caducado';
-    //         }
-    //     } else {
-    //         $this->mensaje = 'Token no encontrado';
-    //     }
-    // }
+    public function verificarToken($token = ''){
+        $this->query = "SELECT * FROM usuarios WHERE token = :token";
+        $this->parametros['token'] = $token;
+        $this->get_results_from_query();
+        // var_dump($token);die();
+        // var_dump($this->rows);die();
+        if(count($this->rows) == 1){
+           // Comprobar si el token ha caducado
+            $this->fecha_creacion_token = $this->rows[0]['fecha_creacion_token'];
+            $fecha_actual = date('Y-m-d H:i:s');
+            $diferencia = strtotime($fecha_actual) - strtotime($this->fecha_creacion_token);
+            if ($diferencia < 86400) {
+                $this->query = "UPDATE usuarios SET token = NULL, fecha_creacion_token = NULL, visible = 1 , cuenta_activa = 1 WHERE token = :token";
+                $this->parametros['token'] = $token;
+                $this->get_results_from_query();
+                // exit();
+                $this->mensaje = 'Usuario verificado';
+            } else {
+                $this->mensaje = 'El token ha caducado';
+            }
+        } else {
+            $this->mensaje = 'Token no encontrado';
+            echo "no entra";
+        }
+
+        // exit();
+    }
 
     public function getAll()
     {
@@ -185,10 +190,10 @@ class Users extends DBAbstractModel
         $this->parametros['email']= $this->email;
         $this->parametros['resumen_perfil']= $this->resumen_perfil;
         $this->parametros['passwd']= $this->passwd;
-        $this->parametros['visible']= 1;
+        $this->parametros['visible']= 0;
         $this->parametros['created_at'] = date('Y-m-d H:i:s', $fecha->getTimestamp());
         $this->parametros['fecha_creacion_token']= date('Y-m-d H:i:s', $fecha->getTimestamp());
-        $this->parametros['cuenta_activa']= 1;
+        $this->parametros['cuenta_activa']= $this->cuenta_activa;
         $this->parametros['token'] = $this->token;
         $this->get_results_from_query();
         $this->mensaje = 'Usuario añadido.';
@@ -211,7 +216,7 @@ class Users extends DBAbstractModel
         // Obtengo los trabajos, proyectos, skills, redes sociales.
         $usuario['trabajos'] = Trabajos::getInstancia()->getTrabajaosByUsuarioId($id);
         $usuario['proyectos'] = Proyectos::getInstancia()->getProyectosByUsuarioId($id);
-        $usuario['skills'] = Skills::getInstancia()->get($id);
+        $usuario['skills'] = Skills::getInstancia()->getSkillsByUsuarioId($id);
         $usuario['redes'] = Redes::getInstancia()->getRedesByUsuarioId($id);
         return $usuario ?? null;}
     

@@ -1,0 +1,15 @@
+<h2>Lista de Contactos</h2>
+<table border="1">
+  <tr>
+    <th>Nombre</th>
+    <th>Email</th>
+    <th>Teléfono</th>
+    <th>Acciones</th>
+  </tr>
+  <tr *ngFor="let contacto of contactos">
+    <td>{{ contacto.nombre }}</td>
+    <td>{{ contacto.email }}</td>
+    <td>{{ contacto.telefono }}</td>
+    <!-- <td><button (click)="eliminarContacto(contacto.id)">Eliminar</button></td> -->
+  </tr>
+</table> 

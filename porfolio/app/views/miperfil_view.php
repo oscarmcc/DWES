@@ -21,7 +21,13 @@
     </header>
     <aside>
         <ul>
-            <?php echo $data['botonvisibilizar']; ?>
+            <?php 
+            if($data['visible'] == 1){
+                echo "<li><a href='/visibilizarPerfil/'>No visibilizar Perfil</a></li>";
+            }else{
+                echo "<li><a href='/visibilizarPerfil/'>Visibilizar Perfil</a></li>";
+            }
+            ?>
             <li><a href="/eliminarusuario/">Eliminar Perfil</a></li>
             <li><a href="/settrabajo/">Crear Trabajo</a></li>
             <li><a href="/setredes/">Añadir Red Social</a></li>

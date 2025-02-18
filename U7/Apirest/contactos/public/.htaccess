@@ -4,4 +4,4 @@ RewriteEngine On
 RewriteRule ^(test)($|/) - [L]
 RewriteRule (.) index.php
 RewriteCond %{HTTP:Authorization} ^(.+)$
-RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteRule . - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

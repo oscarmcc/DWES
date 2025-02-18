@@ -3,17 +3,20 @@
 namespace App\Core;
 class Router
 {
-    private $routes = array(); // array de rutas
-    public function add($route) // añadimos la ruta al array
+    // Inicializo un array de rutas
+    private $routes = array();
+    // Añado la ruta al array con un metodo
+    public function add($route)
     {
         $this->routes[] = $route;
     }
-    public function match(string $request) // recibe un string $request
+    // Metodo para comprobar si tengo una url en mi array
+    public function match(string $request)
     {
         $matches = array();
         foreach ($this->routes as $route) {
-            $patron = $route['path']; // saca el path de la ruta
-            if (preg_match($patron, $request)) { // compara con expresiones regulares el patrón con la entrada
+            $patron=$route['path'];
+            if (preg_match($patron, $request)){
                 $matches = $route;
             }
         }

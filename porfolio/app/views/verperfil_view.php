@@ -11,7 +11,19 @@
         <nav>
             <ul>
                 <li><a href="/">Inicio</a></li>
-                <?php echo $data['nav']; ?>
+                <?php 
+                if (empty($_SESSION['id'])) {
+                    ?>
+                    <button><a href="/registro/">Registrarse</a></button>
+                    <button><a href="/login/">Login</a></button>
+                    <?php
+                } else {
+                    ?>
+                    <button><a href="/logout/">Logout</a></button>
+                    <button><a href="/perfil/">Mi Perfil</a></button>
+                    <?php
+                }
+                ?>
             </ul>
         </nav>
     </header>
