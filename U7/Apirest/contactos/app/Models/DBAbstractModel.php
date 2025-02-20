@@ -14,6 +14,8 @@ abstract class DBAbstractModel
     protected $parametros = array(); // parámetros de entrada
     protected $rows = array(); // array con los datos de salida
 
+    protected $affected_rows; // número de filas afectadas
+
     // Métodos abstractos para implementar en los diferentes módulos.
     abstract protected function get();
     abstract protected function set();
@@ -81,6 +83,7 @@ abstract class DBAbstractModel
                 printf("Error en consulta: %s\n", $e->getMessage());
             }
         }
+        $this->affected_rows = $_stmt->rowCount();
     }
 }
 ?>

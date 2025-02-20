@@ -8,17 +8,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/modificartrabajo.css">
     <title>Modificar Trabajo</title>
 </head>
 <body>
-    <header>
-        <button><a href="/logout/">Logout</a></button>
-        <button><a href="/">Principal</a></button>
+<header>
         <h1>Modificar Trabajo</h1>
+        <nav>
+    <ul>
+    <li><a href="/perfil/">Mi Perfil</a></li>
+    <li><a href="/logout/">Logout</a></li>
+    <li><a href="/">Principal</a></li>
+    <li><a href="/eliminar/">Eliminar Perfil</a></li>
+    </ul>
+    </nav>
     </header>
-    <article>
-        <button><a href="/perfil/">Perfil</a></button>
-    </article>
+    <main>
+    <h2>Modificar Trabajo</h2>
     <form action="" method="post">
         <label for="titulo">Titulo</label>
         <input type="text" name="titulo" id="titulo" value="<?php echo htmlspecialchars($data['trabajo']['titulo']); ?>">
@@ -34,7 +41,8 @@
         <br>
         <label for="logros">Logros</label>
         <input type="text" name="logros" id="logros" value="<?php echo htmlspecialchars($data['trabajo']['logros']); ?>">
-        <input type="submit" name="modificar" value="Modificar">
+        <input type="submit" name="modificar" id="modificar" value="Modificar">
     </form>
+    </main>
 </body>
 </html>

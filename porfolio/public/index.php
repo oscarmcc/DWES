@@ -12,7 +12,7 @@ require_once "../boostrap.php";
 require_once "../vendor/autoload.php";
 
 use App\Core\Router;
-use App\Controllers\MostrarController;
+use App\Controllers\IndexController;
 use App\Controllers\UsuarioController;
 use App\Controllers\SkillsController;
 use App\Controllers\TrabajoController;
@@ -28,14 +28,14 @@ $router = new Router();
 $router->add(array(
     'name' => 'primera',
     'path' => '/^\/(\?.*)?$/',
-    'action' => [MostrarController::class, 'indexAction'],
+    'action' => [IndexController::class, 'indexAction'],
     'roles' => ['invitado', 'user']
 ));
 
 $router->add(array(
     'name' => 'verusuario',
     'path' => '/^\/verperfil\/\d+$/',
-    'action' => [MostrarController::class, 'verPerfilAction'],
+    'action' => [IndexController::class, 'verPerfilAction'],
     'roles' => ['user', 'invitado']
 ));
 

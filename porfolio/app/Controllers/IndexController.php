@@ -3,7 +3,7 @@
 namespace App\Controllers;
 use App\Model\Users;
 
-class MostrarController extends BaseController
+class IndexController extends BaseController
 {
     public function indexAction()
     {

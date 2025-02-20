@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Agregar contacto</h2>
+    <form (ngSubmit)="agregar()">
+        <input id="nombre" type="text" placeholder="Nombre" [(ngModel)]="contacto.nombre" name="nombre" required>
+        <input id="telefono" type="text" placeholder="Telefono" [(ngModel)]="contacto.telefono" name="telefono" required>
+        <input id="email" type="email" placeholder="Email" [(ngModel)]="contacto.email" name="Email" required>
+        <button type="submit">Agregar</button>
+        <button type="button">Cancelar</button>
+    </form>
+</body>
+</html>

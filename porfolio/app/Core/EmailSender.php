@@ -35,7 +35,7 @@ class EmailSender {
             ->priority(Email::PRIORITY_HIGH)
             ->subject('Verificacion de creacion de portfolio')
             // ->text('')
-            ->html('<p>Para poder loguearte en el porfolio de Creaciones, necesitamos que valides tu correo. Date prisa, tienes 24 horas!</p><br><a href="http://www.oscar.local/verificacion/'.$token.'">VALIDA TU CORREO</a>');
+            ->html('<p>Para poder loguearte en el porfolio de Creaciones, necesitamos que valides tu correo. Date prisa, tienes 24 horas!</p><br><a href="http://portfolio.local/verificacion/'.$token.'">VALIDA TU CORREO</a>');
 
         $this->mailer->send($email);
     }

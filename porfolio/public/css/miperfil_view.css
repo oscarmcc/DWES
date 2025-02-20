@@ -1,382 +1,245 @@
-:root{
-    --color-primario:#339989;
-    --color-secundario:#ffa17a;
+/* Definición de los colores personalizados */
+:root {
+    --color-primario: #339989; /* Verde aqua */
+    --color-secundario: #ffa17a; /* Naranja cálido */
+    --color-fondo: #f7f7f7; /* Fondo gris muy claro */
+    --color-texto: #2c3e50; /* Texto oscuro */
+    --color-enlace: #3498db; /* Enlaces en azul */
+    --color-enlace-hover: #2980b9; /* Hover en enlaces */
+    --color-boton: #339989; /* Verde para botones */
+    --color-boton-hover: #27ae60; /* Hover en el botón */
+    --color-titulo: #2c3e50; /* Títulos en un color gris oscuro */
+    --color-sombra: rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
 
-header{
-    background-color: var(--color-primario);
-    color: white;
-    padding: 10px;
-    text-align: center;
-}
-
-nav ul{
-    font-size: 1.25vw;
-    list-style: none;
+/* Reset básico */
+* {
+    margin: 0;
     padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: space-around;
+    box-sizing: border-box;
 }
 
-nav ul li a{
-    text-decoration: none;
-    color: white;
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
 }
 
-nav ul li{
-    transition: background-color 0.5s ease, transform 0.5s ease;
-    padding: 0.5vw;
-    border-radius: 10px;
-}
-
-nav ul li:hover{
-    background-color: var(--color-secundario);
-    transform: translateY(-5px);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-aside{
-    background-color: var(--color-secundario);
-    color: white;
-    padding: 10px;
-    text-align: center;
-}
-
-aside ul{
-    font-size: 1vw;
-    list-style: none;
-    padding: 0.5vw;
-    margin: 0;
-    display: flex;
-    justify-content: space-around;
-}
-
-aside ul li a{
-    text-decoration: none;
-    color: white;
-}
-
-aside ul li{
-    transition: background-color 0.5s ease, transform 0.5s ease;
-    padding: 0.5vw;
-    border-radius: 10px;
-}
-
-aside ul li:hover{
+/* Cabecera */
+header {
     background-color: var(--color-primario);
-    transform: translateY(-5px);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    color: white;
+    padding: 20px 40px;
+    box-shadow: 0 4px 12px var(--color-sombra);
+    text-align: center;
 }
 
+header h1 {
+    font-size: 2.5em;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
 
-.general{
-    text-align: center;
+/* Estilo para la navegación */
+header nav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    margin-top: 10px;
+}
+
+header nav ul li {
+    margin: 0 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+header nav ul li a:hover {
+    color: var(--color-secundario);
+}
+
+/* Barra lateral (Aside) */
+aside {
+    background-color: white;
+    width: 280px;
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    top: 120px;
+    bottom: 0;
+    box-shadow: 2px 0 12px var(--color-sombra);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+aside ul {
+    list-style-type: none;
+}
+
+aside ul li {
+    margin-bottom: 20px;
+}
+
+aside ul li a {
+    text-decoration: none;
+    color: var(--color-primario);
+    font-weight: bold;
+    font-size: 1.1em;
+    display: block;
+    padding: 10px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+aside ul li a:hover {
+    background-color: var(--color-secundario);
+    color: white;
+}
+
+/* Estilo de contenido principal (general) */
+section {
+    margin-left: 320px; /* Deja espacio para el aside */
+    padding: 40px;
+    background-color: white;
+    box-shadow: 0 4px 20px var(--color-sombra);
+    border-radius: 10px;
+    margin-top: 40px;
+}
+
+section h2 {
+    font-size: 2.2em;
+    color: var(--color-titulo);
+    margin-bottom: 20px;
+}
+
+section article {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px var(--color-sombra);
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+section article h3 {
+    font-size: 1.7em;
+    color: var(--color-primario);
+}
+
+section article p {
+    font-size: 1.1em;
+    color: var(--color-texto);
+}
+
+section article ul {
+    list-style-type: none;
+}
+
+section article ul li {
+    margin-top: 10px;
+}
+
+section article ul li a {
+    color: var(--color-secundario);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+section article ul li a:hover {
+    color: var(--color-primario);
+}
+
+/* Estilo de formularios para agregar contenido (trabajos, redes sociales, etc.) */
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 20px var(--color-sombra);
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+form label {
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    color: var(--color-texto);
+}
+
+form input,
+form textarea {
+    padding: 12px;
+    font-size: 1.1em;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+form button {
+    background-color: var(--color-primario);
+    color: white;
+    padding: 15px;
+    font-size: 1.2em;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: var(--color-boton-hover);
+}
+
+/* Estilo para los elementos que se agregan (trabajos, proyectos, redes sociales) */
+section .elementos {
     display: grid;
-    grid-template-rows: 1fr 4fr;
-    grid-template-columns: 1fr 2fr 1fr;
-    align-items: center;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
 }
 
-.general h2{
-    grid-row: 1;
-    grid-column: 1/4;
-}
-
-.general article{
-    grid-row: 2;
-    grid-column: 2;
-    display: flex;
-    justify-content: space-around;
-    padding: 1vw;
-}
-
-.general article img{
-    border-radius: 20px;
-    border:5px solid var(--color-primario);
-    transition: transform 0.5s ease;
-}
-
-.general article div{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    background-color: var(--color-secundario);
-    padding: 10px;
-    border: 5px solid var(--color-primario);
-    color: white;
-    border-radius: 20px;
-    align-items: center;
-    transition: transform 0.5s ease;
-}
-
-.general ul{
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0;
-}
-
-.general ul li{
-    padding: 10px;
+section .elementos div {
+    background-color: #f9f9f9;
+    padding: 20px;
     border-radius: 10px;
-    transition: background-color 0.5s ease, transform 0.5s ease;
+    box-shadow: 0 4px 10px var(--color-sombra);
 }
 
-.general ul li a{
+section .elementos div a {
     text-decoration: none;
-    color: white;
+    color: var(--color-primario);
+    font-weight: bold;
+    font-size: 1.1em;
+    display: block;
+    margin-top: 15px;
 }
 
-.general article div:hover, .general article img:hover{
-    transform: translateY(-5px);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+section .elementos div a:hover {
+    color: var(--color-secundario);
 }
 
-.general ul li:hover{
-    background-color: var(--color-primario);
-    transform: translateY(-5px);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+/* Títulos dentro de cada sección */
+section h2 {
+    color: var(--color-primario);
+    font-weight: bold;
 }
 
-.redes-sociales{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 1vw;
-}
-
-.redes-sociales h2{
-    text-align: center;
-}
-
-.redes-sociales article{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.redes-sociales article div{
-    display: flex;
-    flex-direction: column;
-    padding: 1vw;
-    text-align: center;
-    background-color: var(--color-secundario);
-    border-radius: 20px;
-    border: 5px solid var(--color-primario);
-    transition: background-color 0.5s ease, transform 0.5s ease;
-}
-
-.redes-sociales a{
+/* Estilo para los enlaces dentro del formulario */
+form a {
+    font-size: 1em;
+    color: var(--color-enlace);
     text-decoration: none;
-    color: white;
+    font-weight: 600;
+    margin-top: 15px;
 }
 
-.redes-sociales article div ul{
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: space-between;
-}
-.redes-sociales article div p{
-    font-size: 1vw;
-    transition: background-color 0.5s ease, transform 0.5s ease;
-}
-
-.redes-sociales article div p:hover{
-    background-color: var(--color-secundario);
-    border-radius: 20px;
-    transform: translateY(-5px);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.redes-sociales div ul li{
-    padding: 0.5vw;
-    border-radius: 10px;
-    transition: background-color 0.5s ease, transform 0.5s ease;
-}
-.redes-sociales div ul li:hover{
-    background-color: var(--color-secundario);
-    transform: translateY(-5px);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.redes-sociales article div:hover{
-    background-color: var(--color-primario);
-    border-color: var(--color-secundario);
-    transform: translateY(-5px);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.skills{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 1vw;
-}
-
-.skills h2{
-    text-align: center;
-}
-
-.skills article{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.skills article div{
-    display: flex;
-    flex-direction: column;
-    padding: 1vw;
-    text-align: center;
-    background-color: var(--color-secundario);
-    border-radius: 20px;
-    border: 5px solid var(--color-primario);
-    transition: background-color 0.5s ease, transform 0.5s ease;
-}
-
-.skills a{
-    text-decoration: none;
-    color: white;
-}
-
-.skills article div ul{
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: space-between;
-}
-.skills article div p{
-    font-size: 1vw;
-    color: white;
-    transition: background-color 0.5s ease, transform 0.5s ease;
-}
-
-.skills article div p:hover{
-    background-color: var(--color-secundario);
-    border-radius: 20px;
-    transform: translateY(-5px);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.skills div ul li{
-    padding: 0.5vw;
-    border-radius: 10px;
-    transition: background-color 0.5s ease, transform 0.5s ease;
-}
-.skills div ul li:hover{
-    background-color: var(--color-secundario);
-    transform: translateY(-5px);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.skills article div:hover{
-    background-color: var(--color-primario);
-    border-color: var(--color-secundario);
-    transform: translateY(-5px);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.trabajos{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 1vw;
-}
-
-.trabajos h2{
-    text-align: center;
-}
-
-.trabajos article{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background-color: var(--color-secundario);
-    border: 5px solid var(--color-primario);
-    border-radius: 10px;
-    color: white;
-}
-
-.trabajos p, .trabajos h3,.trabajos h4{
-    padding: 5px;
-    transition: background-color 0.5s ease, transform 0.5s ease;
-    border-radius: 10px;
-}
-
-.trabajos ul{
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
-}
-
-.trabajos ul li{
-    padding: 10px;
-    border-radius: 10px;
-    transition: background-color 0.5s ease, transform 0.5s ease;
-}
-
-.trabajos ul li a{
-    text-decoration: none;
-    color: white;
-}
-
-.trabajos p:hover, .trabajos h3:hover, .trabajos h4:hover, .trabajos ul li:hover{
-    background-color: var(--color-primario);
-    transform: translateY(-5px);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.proyectos{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 1vw;
-}
-
-.proyectos h2{
-    text-align: center;
-}
-
-.proyectos article{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background-color: var(--color-secundario);
-    border: 5px solid var(--color-primario);
-    border-radius: 10px;
-    color: white;
-}
-
-.proyectos p, .proyectos h3,.proyectos h4{
-    padding: 5px;
-    transition: background-color 0.5s ease, transform 0.5s ease;
-    border-radius: 10px;
-}
-
-.proyectos ul{
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
-}
-
-.proyectos ul li{
-    padding: 10px;
-    border-radius: 10px;
-    transition: background-color 0.5s ease, transform 0.5s ease;
-}
-
-.proyectos ul li a{
-    text-decoration: none;
-    color: white;
-}
-
-.proyectos p:hover, .proyectos h3:hover, .proyectos h4:hover, .proyectos ul li:hover{
-    background-color: var(--color-primario);
-    transform: translateY(-5px);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+form a:hover {
+    color: var(--color-enlace-hover);
 }

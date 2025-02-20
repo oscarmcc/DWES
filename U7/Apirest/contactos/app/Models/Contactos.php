@@ -25,7 +25,7 @@ class Contactos extends DBAbstractModel{
         $this->parametros['email'] = $email;
         $this->get_results_from_query();
         $this->mensaje = "Contacto agregado";
-
+        
     }
 
     public function get($id = ''){

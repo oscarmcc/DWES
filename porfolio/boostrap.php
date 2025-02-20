@@ -9,7 +9,7 @@
     define('DBUSER', $_ENV['DBUSER']);
     define('DBPASS', $_ENV['DBPASS']);
     define('DBPORT', 3306);
-    define('BASE_URL', "http://www.oscar.local");
+    define('BASE_URL', "http://portofolio.local");
     // define("SMTP_SERVER", $_ENV['SMTP_SERVER']);
     // Directorio para la subida de los archivos
 define("DIRUPLOAD",'/public/upload/');

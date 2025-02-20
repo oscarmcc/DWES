@@ -8,7 +8,6 @@ class TrabajoController extends BaseController{
         // Comprobamos si el usuario está logueado
         if(empty($_SESSION['id'])){
             header('Location: /');
-            exit();
         }
 
         // Creamos un array para almacenar los datos del formulario
@@ -98,7 +97,6 @@ class TrabajoController extends BaseController{
         $trabajos = Trabajos::getInstancia()->get($id);
         if($trabajos['usuarios_id'] != $_SESSION['id']){
             header('Location: /');
-            exit();
         }
 
         // Creamos un array para almacenar los datos del trabajo

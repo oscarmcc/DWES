@@ -28,13 +28,12 @@
         <input type="text" name="redeslinks" id="redeslinks">
         <input type="submit" value="Añadir" id="submit">
     </form>
-    </main>
-</body>
-</html>
-
-<?php
+    <?php
 
 if(!empty($data['error'])){
     echo '<p>'.$data['error'].'</p>';
 }
 ?>
+    </main>
+</body>
+</html>
