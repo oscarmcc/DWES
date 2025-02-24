@@ -8,6 +8,7 @@ class TrabajoController extends BaseController{
         // Comprobamos si el usuario está logueado
         if(empty($_SESSION['id'])){
             header('Location: /');
+            exit();
         }
 
         // Creamos un array para almacenar los datos del formulario
@@ -60,6 +61,7 @@ class TrabajoController extends BaseController{
         $idTrabajoComprobacion = Trabajos::getInstancia()->get($idTrabajo);
         if($idTrabajoComprobacion[0]['usuarios_id'] != $_SESSION['id']){
             header('Location: /');
+            exit();
         }
 
         // Creamos un array para almacenar los datos del formulario
@@ -84,6 +86,7 @@ class TrabajoController extends BaseController{
         $idTrabajocomprobacion = Trabajos::getInstancia()->get($id);
         if($idTrabajocomprobacion[0]['usuarios_id'] != $_SESSION['id']){
             header('Location: /');
+            exit();
         }
         $trabajo = Trabajos::getInstancia();
         $trabajo->delete($id);
@@ -97,6 +100,7 @@ class TrabajoController extends BaseController{
         $trabajos = Trabajos::getInstancia()->get($id);
         if($trabajos['usuarios_id'] != $_SESSION['id']){
             header('Location: /');
+            exit();
         }
 
         // Creamos un array para almacenar los datos del trabajo

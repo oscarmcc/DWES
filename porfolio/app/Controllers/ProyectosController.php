@@ -169,6 +169,7 @@ class ProyectosController extends BaseController{
         $idProyectocomprobacion = Proyectos::getInstancia()->get($id);
         if($idProyectocomprobacion[0]['usuarios_id'] != $_SESSION['id']){
             header('Location: /');
+            exit();
         }
         $proyecto = Proyectos::getInstancia();
         $proyecto->delete($id);

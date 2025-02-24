@@ -94,6 +94,7 @@ class RedesController extends BaseController{
         $idRedcomprobacion = Redes::getInstancia()->get($id);
         if($idRedcomprobacion[0]['usuarios_id'] != $_SESSION['id']){
             header('Location: /');
+            exit();
         }
         $red = Redes::getInstancia();
         $red->delete($id);

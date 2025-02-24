@@ -98,7 +98,7 @@
                     <?php endforeach; ?>
                 <?php else: ?>
                     <div>
-                    <p>No hay habilidades disponibles.</p>
+                    <p>No hay skills disponibles.</p>
                     </div>
                 <?php endif; ?>
                 </article>

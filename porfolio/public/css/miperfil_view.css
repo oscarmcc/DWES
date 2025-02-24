@@ -1,245 +1,256 @@
-/* Definición de los colores personalizados */
-:root {
-    --color-primario: #339989; /* Verde aqua */
-    --color-secundario: #ffa17a; /* Naranja cálido */
-    --color-fondo: #f7f7f7; /* Fondo gris muy claro */
-    --color-texto: #2c3e50; /* Texto oscuro */
-    --color-enlace: #3498db; /* Enlaces en azul */
-    --color-enlace-hover: #2980b9; /* Hover en enlaces */
-    --color-boton: #339989; /* Verde para botones */
-    --color-boton-hover: #27ae60; /* Hover en el botón */
-    --color-titulo: #2c3e50; /* Títulos en un color gris oscuro */
-    --color-sombra: rgba(0, 0, 0, 0.1); /* Sombra ligera */
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* Reset básico */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+  --color-primario: #339989;
+  --color-secundario: #ffa17a;
+  --color-background: #f8f9fa;
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --color-white: #ffffff;
+  --color-accent: #61dafb;
+  --border-radius: 10px;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: var(--color-fondo);
-    color: var(--color-texto);
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
 }
 
-/* Cabecera */
 header {
-    background-color: var(--color-primario);
-    color: white;
-    padding: 20px 40px;
-    box-shadow: 0 4px 12px var(--color-sombra);
-    text-align: center;
+  background-color: var(--color-primario);
+  color: var(--color-white);
+  padding: 1.25rem 2rem;
+  box-shadow: var(--box-shadow);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
-header h1 {
-    font-size: 2.5em;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
 }
 
-/* Estilo para la navegación */
-header nav ul {
-    display: flex;
-    justify-content: center;
-    list-style-type: none;
-    margin-top: 10px;
+nav ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
-header nav ul li {
-    margin: 0 20px;
+nav a {
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: var(--transition);
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  background-color: var(--color-secundario);
 }
 
-header nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-size: 1.2em;
-    font-weight: 600;
-    transition: all 0.3s ease;
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
-header nav ul li a:hover {
-    color: var(--color-secundario);
+.container {
+  display: flex;
+  max-width: 1200px;
+  margin: 2rem auto;
+  gap: 2rem;
+  padding: 0 1rem;
 }
 
-/* Barra lateral (Aside) */
 aside {
-    background-color: white;
-    width: 280px;
-    padding: 20px;
-    position: fixed;
-    left: 0;
-    top: 120px;
-    bottom: 0;
-    box-shadow: 2px 0 12px var(--color-sombra);
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+  flex: 1;
+  background-color: var(--color-white);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  height: fit-content;
+  position: sticky;
+  top: 100px;
 }
 
 aside ul {
-    list-style-type: none;
+  list-style-type: none;
+  padding: 0;
 }
 
-aside ul li {
-    margin-bottom: 20px;
+aside li {
+  margin-bottom: 1rem;
 }
 
-aside ul li a {
-    text-decoration: none;
-    color: var(--color-primario);
-    font-weight: bold;
-    font-size: 1.1em;
-    display: block;
-    padding: 10px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
+aside a {
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+  display: block;
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius);
+  background-color: var(--color-background);
 }
 
-aside ul li a:hover {
-    background-color: var(--color-secundario);
-    color: white;
+aside a:hover {
+  background-color: var(--color-primario);
+  color: var(--color-white);
+  transform: translateX(5px);
 }
 
-/* Estilo de contenido principal (general) */
+main {
+  flex: 3;
+}
+
 section {
-    margin-left: 320px; /* Deja espacio para el aside */
-    padding: 40px;
-    background-color: white;
-    box-shadow: 0 4px 20px var(--color-sombra);
-    border-radius: 10px;
-    margin-top: 40px;
+  background-color: var(--color-white);
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: 2rem;
+  transition: var(--transition);
 }
 
-section h2 {
-    font-size: 2.2em;
-    color: var(--color-titulo);
-    margin-bottom: 20px;
+section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-section article {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px var(--color-sombra);
-    padding: 20px;
-    margin-bottom: 20px;
+h2 {
+  color: var(--color-primario);
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
 }
 
-section article h3 {
-    font-size: 1.7em;
-    color: var(--color-primario);
+h2::before {
+  content: '';
+  display: inline-block;
+  width: 30px;
+  height: 3px;
+  background-color: var(--color-primario);
+  margin-right: 10px;
 }
 
-section article p {
-    font-size: 1.1em;
-    color: var(--color-texto);
+.general article {
+  display: flex;
+  gap: 2rem;
+  align-items: start;
 }
 
-section article ul {
-    list-style-type: none;
+.general img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--color-primario);
+  transition: var(--transition);
 }
 
-section article ul li {
-    margin-top: 10px;
+.general img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(51, 153, 137, 0.3);
 }
 
-section article ul li a {
-    color: var(--color-secundario);
-    text-decoration: none;
-    font-weight: 600;
+article {
+  background-color: var(--color-background);
+  padding: 1.5rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+  transition: var(--transition);
 }
 
-section article ul li a:hover {
-    color: var(--color-primario);
+article:hover {
+  background-color: var(--color-white);
+  box-shadow: var(--box-shadow);
 }
 
-/* Estilo de formularios para agregar contenido (trabajos, redes sociales, etc.) */
-form {
-    display: flex;
+article ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+article a {
+  color: var(--color-primario);
+  text-decoration: none;
+  font-weight: 500;
+  transition: var(--transition);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--border-radius);
+  background-color: rgba(51, 153, 137, 0.1);
+}
+
+article a:hover {
+  background-color: var(--color-primario);
+  color: var(--color-white);
+}
+
+.redes-sociales article, .skills article {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.trabajos article, .proyectos article {
+  border-left: 4px solid var(--color-primario);
+  padding-left: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .container {
     flex-direction: column;
-    padding: 20px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 20px var(--color-sombra);
-    border-radius: 10px;
-    margin-bottom: 40px;
+  }
+
+  aside {
+    position: static;
+  }
+
+  .general article {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .redes-sociales article, .skills article {
+    grid-template-columns: 1fr;
+  }
 }
 
-form label {
-    font-size: 1.1em;
-    margin-bottom: 8px;
-    color: var(--color-texto);
-}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #1a1a2e;
+    --color-text: #e1e1e1;
+    --color-text-light: #b0b0b0;
+    --color-white: #16213e;
+  }
 
-form input,
-form textarea {
-    padding: 12px;
-    font-size: 1.1em;
-    margin-bottom: 15px;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    width: 100%;
-    background-color: #ffffff;
-}
+  header {
+    background: linear-gradient(135deg, #1e3a8a, #5b21b6);
+  }
 
-form button {
+  aside a {
+    background-color: #0f172a;
+  }
+
+  aside a:hover {
     background-color: var(--color-primario);
-    color: white;
-    padding: 15px;
-    font-size: 1.2em;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+  }
 
-form button:hover {
-    background-color: var(--color-boton-hover);
-}
-
-/* Estilo para los elementos que se agregan (trabajos, proyectos, redes sociales) */
-section .elementos {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 30px;
-}
-
-section .elementos div {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px var(--color-sombra);
-}
-
-section .elementos div a {
-    text-decoration: none;
-    color: var(--color-primario);
-    font-weight: bold;
-    font-size: 1.1em;
-    display: block;
-    margin-top: 15px;
-}
-
-section .elementos div a:hover {
-    color: var(--color-secundario);
-}
-
-/* Títulos dentro de cada sección */
-section h2 {
-    color: var(--color-primario);
-    font-weight: bold;
-}
-
-/* Estilo para los enlaces dentro del formulario */
-form a {
-    font-size: 1em;
-    color: var(--color-enlace);
-    text-decoration: none;
-    font-weight: 600;
-    margin-top: 15px;
-}
-
-form a:hover {
-    color: var(--color-enlace-hover);
+  article:hover {
+    background-color: #1e293b;
+  }
 }

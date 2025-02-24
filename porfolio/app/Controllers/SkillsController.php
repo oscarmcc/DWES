@@ -60,6 +60,7 @@ class SkillsController extends BaseController{
         $idSkillcomprobacion = Skills::getInstancia()->getById($idSkill);
         if($idSkillcomprobacion[0]['usuarios_id'] != $_SESSION['id']){
             header('Location: /');
+            exit();
         }
 
         // Creamos un array para almacenar los datos del formulario
@@ -126,6 +127,7 @@ class SkillsController extends BaseController{
         $idSkillcomprobacion = Skills::getInstancia()->getById($id);
         if($idSkillcomprobacion[0]['usuarios_id'] != $_SESSION['id']){
             header('Location: /');
+            exit();
         }
         $skill = Skills::getInstancia();
         $skill->delete($id);

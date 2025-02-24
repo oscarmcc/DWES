@@ -74,7 +74,7 @@
                 <?php endforeach; ?>
             <?php else: ?>
                 <div>
-                <p>No hay habilidades disponibles.</p>
+                <p>No hay Skills disponibles.</p>
                 </div>
             <?php endif; ?>
         </article>

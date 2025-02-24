@@ -403,4 +403,13 @@ class UsuarioController extends BaseController
 
         $this->renderHTML('../app/views/miperfil_view.php', $data);
     }
+
+    public function eliminarUsuarioAction(){
+        $usuario = Users::getInstancia();
+        $usuario->delete($_SESSION['id']);
+        session_start();
+        session_unset();
+        session_destroy();
+        header('Location: /');
+    }
 }
