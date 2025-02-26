@@ -26,11 +26,11 @@ class Usuarios extends DBAbstractModel{
             $$campo = $valor;
         }
 
-        $this->query = "INSERT INTO usuarios (nombre, email, password) 
-                        VALUES (:nombre, :email, :password)";
+        $this->query = "INSERT INTO usuarios (nombre, email, passwd) 
+                        VALUES (:nombre, :email, :passwd)";
         $this->parametros['nombre'] = $nombre;
         $this->parametros['email'] = $email;
-        $this->parametros['password'] = $password;
+        $this->parametros['passwd'] = $passwd;
         $this->get_results_from_query();
         $this->mensaje = "Usuario agregado";
 
@@ -70,20 +70,20 @@ class Usuarios extends DBAbstractModel{
             $$campo = $valor;
         }
 
-        $this->query = "UPDATE usuarios SET nombre = :nombre, email = :email, password = :password WHERE id = :id";
+        $this->query = "UPDATE usuarios SET nombre = :nombre, email = :email, passwd = :passwd WHERE id = :id";
         $this->parametros['nombre'] = $nombre;
         $this->parametros['email'] = $email;
-        $this->parametros['password'] = $password;
+        $this->parametros['passwd'] = $passwd;
         $this->parametros['id'] = $id;
         $this->get_results_from_query();
         $this->mensaje = "Usuario modificado";
     }
 
-    public function delete($dataCont=array()){
-        foreach ($dataCont as $campo=>$valor) {
+    public function delete($data=array()){
+        foreach ($data as $campo=>$valor) {
             $$campo = $valor;
         }
-        $this->query = "DELETE FROM Usuarios WHERE id = :id";
+        $this->query = "DELETE FROM usuarios WHERE id = :id";
         $this->parametros['id'] = $id;
         $this->get_results_from_query();
 
@@ -91,12 +91,12 @@ class Usuarios extends DBAbstractModel{
         
     }
 
-    public function login($email = '', $password = ''){
-        if($email != '' && $password != ''){
-            $this->query= "SELECT * FROM Usuarios WHERE email = :email AND password = :password";
+    public function login($email = '', $passwd = ''){
+        if($email != '' && $passwd != ''){
+            $this->query= "SELECT * FROM usuarios WHERE email = :email AND passwd = :passwd";
 
             $this->parametros['email'] = $email;
-            $this->parametros['password'] = $password;
+            $this->parametros['passwd'] = $passwd;
 
             $this->get_results_from_query();
         }

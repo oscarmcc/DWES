@@ -18,8 +18,9 @@ class Reservas extends DBAbstractModel{
             $$campo = $valor;
         }
 
-        $this->query = "INSERT INTO reservas (nombre,telefono,email,id_instalacion,fecha_hora_inicio,fecha_hora_final,estado) 
-                        VALUES (:nombre, :telefono, :email, :id_instalacion, :fecha_hora_inicio, :fecha_hora_final, :estado)";
+        $this->query = "INSERT INTO reservas (nombre,telefono,email,id_instalacion,fecha_hora_inicio,fecha_hora_final,estado,user_id) 
+                        VALUES (:nombre, :telefono, :email, :id_instalacion, :fecha_hora_inicio, :fecha_hora_final, :estado, :user_id)";
+        $this->parametros['user_id'] = $user_id;
         $this->parametros['nombre'] = $nombre;
         $this->parametros['telefono'] = $telefono;
         $this->parametros['email'] = $email;
@@ -31,30 +32,56 @@ class Reservas extends DBAbstractModel{
         $this->mensaje = "Reserva agregada";
     }
 
-    public function get($id = ''){
-        if ($id != '') {
-            $this->query = "SELECT * FROM reservas WHERE id = :id";
+    public function get($sh_data = array()){
+    
+        // var_dump($sh_data); die();
+
+        foreach ($sh_data as $campo=>$valor) {
+            $$campo = $valor;
+        }
+    
+        if(isset($user_id)){
+            $this->query = "SELECT * FROM reservas WHERE user_id= :user_id";
+
+            // Cargamos los parametros
+            $this->parametros['user_id'] = $user_id;
+
+        }
+
+        if(isset($id)){
+            $this->query = "SELECT * FROM reservas WHERE id= :id";
+
+            // Cargamos los parametros
             $this->parametros['id'] = $id;
-            $this->get_results_from_query();
+
         }
-        if (count($this->rows) == 1) {
-            foreach ($this->rows[0] as $propiedad => $valor) {
-                // $this->$propiedad = $valor;
+
+        // Ejecutamos la consulta
+        $this->get_results_from_query();
+
+        if(count($this->rows) == 1){
+            foreach ($this->rows[0] as $propiedad=>$valor){
+                $this->$propiedad = $valor;
             }
-            $this->mensaje = "Reserva encontrada";
+            $this->mensaje = 'Instalaciones encontrado';
         } else {
-            $this->mensaje = "Reserva no encontrada";
+            $this->mensaje = 'Instalaciones no encontrado';
         }
-        return $this->rows[0]??null;
+        return $this->rows ?? null;
     }
 
     public function edit(){
     }
 
-    public function delete($id = ''){
+    public function delete($data = array()){
+        foreach ($data as $campo => $valor) {
+            $$campo = $valor;
+        }
+
         $this->query = "DELETE FROM reservas WHERE id = :id";
         $this->parametros['id'] = $id;
         $this->get_results_from_query();
+        $this->mensaje = "Reserva eliminada";
     }
 }
 ?>

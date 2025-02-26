@@ -6,6 +6,12 @@ use App\Core\Router;
 use App\Controllers\CentrosCivicosController;
 use App\Controllers\InstalacionesController;
 use App\Controllers\ActividadesController;
+use App\Controllers\AuthController;
+use App\Controllers\UserController;
+use App\Controllers\ReservasController;
+use App\Controllers\InscripcionesController;
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
@@ -23,8 +29,70 @@ if(isset($uri[3])){
     $userId = (int) $uri[3];
 }
 
+// FUNCION PARA LA SESION
+function sesion(){
+    $input = (array) json_decode(file_get_contents('php://input'), TRUE);
+    $authHeader = $_SERVER['HTTP_AUTHORIZATION'] ?? null;
+    $arr = explode(" ", $authHeader);
+    $jwt = null;
+
+    if ($authHeader) {
+        $arr = explode(" ", $authHeader);
+        if (isset($arr[1])) {
+            $jwt = $arr[1];
+        }
+    }
+
+    // var_dump($_SERVER['HTTP_AUTHORIZATION']);
+    // var_dump($authHeader);
+    
+    if($jwt){
+        try{
+            $decoded = JWT::decode($jwt, new Key(KEY, 'HS256'));
+            return true;
+        } catch (Exception $e){
+            echo json_encode(array(
+                'message' => 'Acceso denegado', 
+                           'error' => $e->getMessage() 
+            ));
+            return false;
+            exit(http_response_code(401));
+        }
+    }
+    return false;
+}
+
 
 $router = new Router();
+// CONSULTAS PARA USUARIOS
+$router->add(array(
+    'name'=>'login',
+    'path'=>'/^\/api\/login+$/',
+    'action'=> AuthController::class,
+    'perfil'=>  ['registros']
+));
+
+$router->add(array(
+    'name'=>'register',
+    'path'=>'/^\/api\/register$/',
+    'action'=> UserController::class,
+    'perfil'=>  ['registros']
+));
+
+$router->add(array(
+    'name'=>'usuarios',
+    'path'=>'/^\/api\/user$/',
+    'action'=> UserController::class,
+    'perfil'=>  ['usuario']
+));
+
+$router->add(array(
+    'name'=>'token',
+    'path'=>'/^\/api\/token\/refresh$/',
+    'action'=> UserController::class,
+    'perfil'=>  ['usuario']
+));
+
 
 // CONSULTAS PARA CENTROS CIVICOS
 
@@ -74,10 +142,54 @@ $router->add(array(
     'perfil'=>  ['publico']
 ));
 
-$request = $_SERVER['REQUEST_URI'];
+// CONSULTAS PARA RESERVAS
+$router->add(array(
+    'name'=>'reservas',
+    'path'=>'/^\/api\/reservas$/',
+    'action'=> ReservasController::class,
+    'perfil'=>  ['usuario']
+));
+
+$router->add(array(
+    'name'=>'reservas',
+    'path'=>'/^\/api\/reservas\/[0-9]+$/',
+    'action'=> ReservasController::class,
+    'perfil'=>  ['usuario']
+));
+
+// CONSULTAS PARA INSCRIPCIONES 
+
+$router->add(array(
+    'name'=>'inscripciones',
+    'path'=>'/^\/api\/inscripciones$/',
+    'action'=> InscripcionesController::class,
+    'perfil'=>  ['usuario']
+));
+
+$router->add(array(
+    'name'=>'inscripcion',
+    'path'=>'/^\/api\/inscripciones\/[0-9]+$/',
+    'action'=> InscripcionesController::class,
+    'perfil'=>  ['usuario']
+));
+
 $route = $router->match($request);
 
 if($route){
+
+    if($route['perfil'][0] == 'usuario' && !sesion()){
+        header('HTTP/1.1 401 Unauthorized');
+        $response['body'] = json_encode(array('message' => 'Acceso no autorizado'));
+        echo json_encode($response['body']);
+        exit();
+    }
+
+    if($route['perfil'][0] == 'registros' && sesion()){
+        header('HTTP/1.1 401 Unauthorized');
+        $response['body'] = json_encode(array('message' => 'Acceso no permitido'));
+        echo json_encode($response['body']);
+        exit();
+    }
     $controllerName = $route['action'];
     $controller = new $controllerName($requestMethod, $userId);
     $controller->processRequest();

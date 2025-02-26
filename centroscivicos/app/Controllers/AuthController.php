@@ -20,64 +20,95 @@ class AuthController
         $this->users = Usuarios::getInstancia();
     }
 
-    public function LoginFromRequest(){
-        // Leemos el json
-        $input = (array) json_decode(file_get_contents('php://input'), TRUE);
-        // Validamos si el formato de entrada es correcto
-        if (json_last_error() != JSON_ERROR_NONE) {
-            http_response_code(400);
-            echo json_encode(['mensaje' => 'El JSON recibido no es válido', "error" => exit()]);
-        }
-        $usuario = $input['usuario']??'';
-        $password = $input['password']??'';
-        $dataUser = $this->users->login($usuario, $password);
-
-        if ($dataUser){
-            $key = KEY; // Clave de encriptación
-            // Emisor del token
-            $issuer_claim = "http://centroscivicos.local";
-            // Audiencia del token
-            $audience_claim = "http://centroscivicos.local";
-            // Tiempo en que fue emitido el token
-            $issuedat_claim = time();
-            // Tiempo en que el token será válido
-            $notbefore_claim = time();
-            // Tiempo en que el token expirará
-            $expire_claim = $issuedat_claim + 3600;
-
-            $token = array(
-                "iss" => $issuer_claim,
-                "aud" => $audience_claim,
-                "iat" => $issuedat_claim,
-                "nbf" => $notbefore_claim,
-                "exp" => $expire_claim,
-                "data" => array(
-                    "usuario" => $usuario
-                )
-            );
-
-            // Generamos el token jwt
-            $jwt = JWT::encode($token, $key, 'HS256');
-            $res = json_encode(
-                array(
-                    "mensaje" => "Acceso concedido",
-                    "jwt" => $jwt,
-                    "usuario" => $usuario,
-                    "ExpireAt" => $expire_claim
-                )
-            );
-
-            $response['status_code_header'] = 'HTTP/1.1 201 Created';
-            $response['body'] = $res;
-
-        } else{
-            $response['status_code_header'] = 'HTTP/1.1 401 Login failed';
-            $response['body'] = null;
+    public function processRequest(){
+        switch ($this->requestMethod){
+            case 'POST':
+                $response=$this->LoginFromRequest();
+                break;
+            default:
+                $response = $this->notFoundResponse();
+                break;
         }
 
         header($response['status_code_header']);
         if ($response['body']) {
             echo $response['body'];
         }
+    }
+
+    public function loginFromRequest()
+    {
+        // Leemos flujo de entrada
+        $input = (array) json_decode(file_get_contents('php://input'), TRUE);
+
+        // Determinamos si el JSON es válido
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            http_response_code(400);
+            echo json_encode(["message" => "El JSON recibido no es válido.", "error" => exit()]);
+        }
+
+        if (!isset($input['email']) || !isset($input['passwd'])) {
+            return $this->unprocessableEntityResponse("El email y la contraseña son obligatorios.");
+        }
+
+        if (count($input) > 2) {
+            return $this->unprocessableEntityResponse("Solo puede escribir el correo y la contraseña.");
+        }
+
+        $email = $input['email'];
+        $password = $input['passwd'];
+        $dataUser = $this->users->login($email, $password);
+
+        $id = $dataUser['id'] ?? null;
+
+        if ($dataUser) {
+            $key = KEY; // Clave de encriptación
+            $issuer_claim = "http://apicentros.local"; // Emisor del token
+            $audience_claim = "http://apicentros.local"; // Destinatario del token
+            $issuedat_claim = time(); // Tiempo en que fue emitido el token
+            $notbofore_claim = time(); // Tiempo antes del cual no es válido el token
+            $expire_claim = $issuedat_claim + 3600; // Tiempo de expiración del token
+
+            $token = array(
+                "iss" => $issuer_claim,
+                "aud" => $audience_claim,
+                "iat" => $issuedat_claim,
+                "nbf" => $notbofore_claim,
+                "exp" => $expire_claim,
+                "data" => array(
+                    "usuario" => $email, $id
+                )
+            );
+
+
+            $jwt = JWT::encode($token, $key, 'HS256');
+            $res['status_code_header'] = 'HTTP/1.1 200 OK';
+            $res['body'] = json_encode(
+                array(
+                    "message" => "Inicio de sesión exitoso.",
+                    "jwt" => $jwt,
+                    "usuario" => $email,
+                    "expireAt" => $expire_claim
+                )
+            );
+
+        } else {
+            $res['status_code_header'] = 'HTTP/1.1 401 Unauthorized';
+            $res['body'] = json_encode(["message" => "Usuario o contraseña incorrectos."]);
+        }
+
+        return $res;
+    }
+
+    private function unprocessableEntityResponse($message){
+        $response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
+        $response['body'] = json_encode(['error' => $message]);
+        return $response;
+    }
+
+    private function notFoundResponse(){
+        $response['status_code_header'] = 'HTTP/1.1 404 Not Found';
+        $response['body'] = null;
+        return $response;
     }
 }
