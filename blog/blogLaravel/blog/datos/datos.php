@@ -4,7 +4,7 @@ Quitamos todos los require para utilizar el autoload
 require 'app/Models/Blog.php';
 require 'app/Models/Comment.php';
 */
-require_once '../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 //use App\Models\Blog;
 //use App\Models\Comment;
 // Desde php 7 podemos cambiar las instrucciones anteriores por
@@ -16,16 +16,18 @@ $blog1->setBlog('Lorem ipsum dolor sit amet, consectetur adipiscing eletra elect
 $blog1->setImage('beach.jpg');
 $blog1->setAuthor('dsyph3r');
 $blog1->setTags('symfony2, php, paradise, symblog');
+$blog1->setCreated(new \DateTime());
+//$blog1->setUpdated($blog1->getCreated());
 
 $comment1 = new Comment();
 $comment1->setUser('symfony');
 $comment1->setComment('To make a long story short. You can\'t go wrong by choosing Symfony! And no one has ever been fired for using Symfony.');
-$comment1->setBlogId($blog1);
+$comment1->setBlog($blog1);
 
 $comment2 = new Comment();
 $comment2->setUser('David');
 $comment2->setComment('To make a long story short. Choosing a framework must not be taken lightly; it is a long-term commitment. Make sure that you make the right selection!');
-$comment2->setBlogId($blog1);
+$comment2->setBlog($blog1);
 
 $blog1->addComment($comment1);
 $blog1->addComment($comment2);
@@ -38,64 +40,72 @@ $blog2->setImage('pool_leak.jpg');
 $blog2->setAuthor('Zero Cool');
 $blog2->setTags('pool, leaky, hacked, movie, hacking, symblog');
 
-
 $comment3 = new Comment();
 $comment3->setUser('Dade');
 $comment3->setComment('Anything else, mom? You want me to mow the lawn? Oops! I forgot, New York, No grass.');
-$comment3->setBlogId($blog2);
+$comment3->setBlog($blog2);
 
 $comment4 = new Comment();
 $comment4->setUser('Kate');
 $comment4->setComment('Are you challenging me? ');
-$comment4->setBlogId($blog2);
+$comment4->setBlog($blog2);
+$comment4->setCreated(new \DateTime("2011-07-23 06:15:20"));
 
 
 $comment5 = new Comment();
 $comment5->setUser('Dade');
 $comment5->setComment('Name your stakes.');
-$comment5->setBlogId($blog2);
+$comment5->setBlog($blog2);
+$comment5->setCreated(new \DateTime("2011-07-23 06:18:35"));
 
 
 $comment6 = new Comment();
 $comment6->setUser('Kate');
 $comment6->setComment('If I win, you become my slave.');
-$comment6->setBlogId($blog2);
+$comment6->setBlog($blog2);
+$comment6->setCreated(new \DateTime("2011-07-23 06:22:53"));
 
 
 $comment7 = new Comment();
 $comment7->setUser('Dade');
 $comment7->setComment('Your SLAVE?');
-$comment7->setBlogId($blog2);
+$comment7->setBlog($blog2);
+$comment7->setCreated(new \DateTime("2011-07-23 06:25:15"));
 
 
 $comment8 = new Comment();
 $comment8->setUser('Kate');
 $comment8->setComment('You wish! You\'ll do shitwork, scan, crack copyrights...');
-$comment8->setBlogId($blog2);
+$comment8->setBlog($blog2);
+$comment8->setCreated(new \DateTime("2011-07-23 06:46:08"));
 
 
 $comment9 = new Comment();
 $comment9->setUser('Dade');
 $comment9->setComment('And if I win?');
-$comment9->setBlogId($blog2);
+$comment9->setBlog($blog2);
+$comment9->setCreated(new \DateTime("2011-07-23 10:22:46"));
 
 
 $comment10 = new Comment();
 $comment10->setUser('Kate');
 $comment10->setComment('Make it my first-born!');
-$comment10->setBlogId($blog2);
+$comment10->setBlog($blog2);
+$comment10->setCreated(new \DateTime("2011-07-23 11:08:08"));
 
 
 $comment11 = new Comment();
 $comment11->setUser('Dade');
 $comment11->setComment('Make it our first-date!');
-$comment11->setBlogId($blog2);
+$comment11->setBlog($blog2);
+$comment11->setCreated(new \DateTime("2011-07-24 18:56:01"));
 
 
 $comment12= new Comment();
 $comment12->setUser('Kate');
 $comment12->setComment('I don\'t DO dates. But I don\'t lose either, so you\'re on!');
-$comment12->setBlogId($blog2);
+$comment12->setBlog($blog2);
+$comment12->setCreated(new \DateTime("2011-07-25 22:28:42"));
 
 $blog2->addComment($comment3);
 $blog2->addComment($comment4);
@@ -116,16 +126,15 @@ $blog3->setImage('misdirection.jpg');
 $blog3->setAuthor('Gabriel');
 $blog3->setTags('misdirection, magic, movie, hacking, symblog');
 
-
 $comment13 = new Comment();
 $comment13->setUser('Stanley');
 $comment13->setComment('It\'s not gonna end like this.');
-$comment13->setBlogId($blog3);
+$comment13->setBlog($blog3);
 
 $comment14 = new Comment();
 $comment14->setUser('Gabriel');
 $comment14->setComment('Oh, come on, Stan. Not everything ends the way you think it should. Besides, audiences love happy endings.');
-$comment14->setBlogId($blog3);
+$comment14->setBlog($blog3);
 
 $blog3->addComment($comment13);
 $blog3->addComment($comment14);
@@ -138,7 +147,6 @@ $blog4->setImage('the_grid.jpg');
 $blog4->setAuthor('Kevin Flynn');
 $blog4->setTags('grid, daftpunk, movie, symblog');
 
-
 //BLOG 5
 $blog5 = new Blog();
 $blog5->setTitle('You\'re either a one or a zero. Alive or dead');
@@ -147,16 +155,15 @@ $blog5->setImage('one_or_zero.jpg');
 $blog5->setAuthor('Gary Winston');
 $blog5->setTags('binary, one, zero, alive, dead, !trusting, movie, symblog');
 
-
 $comment15 = new Comment();
 $comment15->setUser('Mile');
 $comment15->setComment('Doesn\'t Bill Gates have something like that?');
-$comment15->setBlogId($blog5);
+$comment15->setBlog($blog5);
 
 $comment16 = new Comment();
 $comment16->setUser('Gary');
 $comment16->setComment('Bill Who?');
-$comment16->setBlogId($blog5);
+$comment16->setBlog($blog5);
 $blog5->addComment($comment15);
 $blog5->addComment($comment16);
 
