@@ -1,0 +1,404 @@
+/* Modern CSS for Sistema - Centros Cívicos de Córdoba */
+
+:root {
+    --primary: #4f46e5;
+    --primary-light: #818cf8;
+    --primary-dark: #4338ca;
+    --secondary: #10b981;
+    --secondary-dark: #059669;
+    --accent: #f59e0b;
+    --accent-dark: #d97706;
+    --danger: #ef4444;
+    --danger-dark: #dc2626;
+    --success: #22c55e;
+    --success-dark: #16a34a;
+    --warning: #eab308;
+    --warning-dark: #ca8a04;
+    --background: #ffffff;
+    --foreground: #1f2937;
+    --muted: #6b7280;
+    --muted-background: #f9fafb;
+    --border: #e5e7eb;
+    --card-bg: #ffffff;
+    --radius: 0.5rem;
+    --radius-lg: 1rem;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --font-sans: 'Poppins', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --transition: all 0.2s ease-in-out;
+    --transition-slow: all 0.3s ease-in-out;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: var(--font-sans);
+    color: var(--foreground);
+    background-color: var(--muted-background);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  
+  a:hover {
+    color: var(--primary-dark);
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  strong {
+    color: var(--primary);
+  }
+  
+  .info {
+    color: var(--foreground);
+    font-weight: 500;
+  }
+  
+  /* Navigation */
+  nav {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+  }
+  
+  nav img {
+    height: 2.5rem;
+    width: auto;
+  }
+  
+  nav ul {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  
+  nav ul li a {
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius);
+    color: white;
+    transition: var(--transition);
+    position: relative;
+  }
+  
+  nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: var(--transition);
+    transform: translateX(-50%);
+  }
+  
+  nav ul li a:hover {
+    color: var(--accent);
+  }
+  
+  nav ul li a:hover::after {
+    width: 80%;
+  }
+  
+  /* Section Styles */
+  .section {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    color: var(--foreground);
+    max-width: 650px;
+    width: 90%;
+    margin: 3rem auto;
+    transition: var(--transition-slow);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  }
+  
+  .section:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-5px);
+  }
+  
+  .section h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    color: var(--primary);
+    position: relative;
+    padding-bottom: 0.75rem;
+  }
+  
+  .section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    border-radius: 3px;
+  }
+  
+  .section p {
+    margin: 1rem 0;
+    color: var(--foreground);
+  }
+  
+  /* Button Styles */
+  button {
+    display: block;
+    width: 100%;
+    margin: 1rem 0;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    border: none;
+    background: var(--primary);
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: var(--transition);
+  }
+  
+  button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  /* Specific Button Styles */
+  .edit-button {
+    background: var(--success);
+  }
+  
+  .edit-button:hover {
+    background: var(--success-dark);
+  }
+  
+  .refresh-button {
+    background: var(--warning);
+    color: var(--foreground);
+  }
+  
+  .refresh-button:hover {
+    background: var(--warning-dark);
+  }
+  
+  .logout-button {
+    background: var(--danger);
+  }
+  
+  .logout-button:hover {
+    background: var(--danger-dark);
+  }
+  
+  .delete-button {
+    background: var(--danger);
+  }
+  
+  .delete-button:hover {
+    background: var(--danger-dark);
+  }
+  
+  /* User Management Section */
+  #gestion-usuario {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    padding: 3rem 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    color: white;
+    max-width: 800px;
+    margin: 3rem auto;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  #gestion-usuario::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.3;
+    z-index: 0;
+  }
+  
+  #seccionBotones {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1.5rem 0;
+    position: relative;
+    z-index: 1;
+  }
+  
+  #gestion-usuario h2 {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  #gestion-usuario p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.9);
+    position: relative;
+    z-index: 1;
+  }
+  
+  #gestion-usuario button {
+    width: auto;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    background: white;
+    color: var(--primary);
+    font-size: 1rem;
+    transition: var(--transition);
+    position: relative;
+    z-index: 1;
+  }
+  
+  #gestion-usuario button:hover {
+    background: var(--accent);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+  }
+  
+  #gestion-usuario .edit-button:hover {
+    background: var(--success);
+  }
+  
+  #gestion-usuario .refresh-button:hover {
+    background: var(--warning);
+  }
+  
+  #gestion-usuario .logout-button:hover {
+    background: var(--danger);
+  }
+  
+  #gestion-usuario .delete-button:hover {
+    background: var(--danger);
+  }
+  
+  #user-info {
+    display: none;
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    color: var(--foreground);
+    max-width: 600px;
+    margin: 2rem auto;
+    text-align: left;
+    border: 1px solid var(--border);
+  }
+  
+  #user-info p {
+    margin: 0.75rem 0;
+    font-size: 1rem;
+    color: var(--foreground);
+  }
+  
+  #user-info p strong {
+    color: var(--primary);
+    font-weight: 600;
+  }
+  
+  #user-info span {
+    color: var(--foreground);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+      padding: 1rem;
+    }
+    
+    nav ul {
+      margin-top: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    
+    .section, #gestion-usuario {
+      padding: 2rem;
+      margin: 2rem auto;
+    }
+    
+    #seccionBotones {
+      flex-direction: column;
+    }
+    
+    #gestion-usuario button {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    html {
+      font-size: 14px;
+    }
+    
+    .section, #gestion-usuario, #user-info {
+      padding: 1.5rem;
+    }
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .section, #gestion-usuario {
+    animation: fadeIn 0.5s ease-out forwards;
+  }

@@ -1,0 +1,579 @@
+/* Modern CSS for Centros Cívicos de Córdoba - Visual Design */
+
+/* CSS Reset and Base Styles */
+:root {
+    --primary: #4f46e5;
+    --primary-light: #818cf8;
+    --primary-dark: #4338ca;
+    --secondary: #10b981;
+    --secondary-dark: #059669;
+    --accent: #f59e0b;
+    --accent-dark: #d97706;
+    --background: #ffffff;
+    --foreground: #1f2937;
+    --muted: #6b7280;
+    --muted-background: #f9fafb;
+    --border: #e5e7eb;
+    --card-bg: #ffffff;
+    --radius: 0.5rem;
+    --radius-lg: 1rem;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --transition: all 0.2s ease-in-out;
+    --transition-slow: all 0.3s ease-in-out;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: var(--font-sans);
+    color: var(--foreground);
+    background-color: var(--muted-background);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: var(--transition);
+  }
+  
+  a:hover {
+    color: var(--primary-dark);
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Navigation */
+  nav {
+    background-color: var(--background);
+    box-shadow: var(--shadow);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  nav img {
+    height: 2.5rem;
+    width: auto;
+  }
+  
+  nav ul {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+  }
+  
+  nav ul li a {
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    border-radius: var(--radius);
+    color: var(--foreground);
+    transition: var(--transition);
+    position: relative;
+  }
+  
+  nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary);
+    transition: var(--transition);
+    transform: translateX(-50%);
+  }
+  
+  nav ul li a:hover {
+    color: var(--primary);
+  }
+  
+  nav ul li a:hover::after {
+    width: 80%;
+  }
+  
+  #login a, #register a {
+    background-color: transparent;
+    color: var(--primary);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    font-weight: 500;
+    transition: var(--transition);
+    border: 1px solid var(--primary);
+  }
+  
+  #login a:hover {
+    background-color: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+  }
+  
+  #register a {
+    background-color: var(--primary);
+    color: white;
+    border: 1px solid var(--primary);
+  }
+  
+  #register a:hover {
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+  
+  /* Main Content */
+  #mainBody {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  article {
+    background-color: var(--background);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  
+  .content {
+    padding: 2rem;
+  }
+  
+  .section {
+    margin-bottom: 2rem;
+  }
+  
+  /* Centro Cívico Header */
+  #centros-section > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3rem;
+    text-align: center;
+    position: relative;
+  }
+  
+  #centros-section > div:first-child h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--foreground);
+    position: relative;
+    padding-bottom: 0.75rem;
+    font-weight: 700;
+  }
+  
+  #centros-section > div:first-child h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    border-radius: 4px;
+  }
+  
+  #centro-img {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    margin-top: 1.5rem;
+  }
+  
+  /* Centro Cívico List - VISUAL REDESIGN */
+  #centros-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+  
+  #centros-list > li {
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition-slow);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  #centros-list > li:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  #centros-list h2 {
+    font-size: 1.5rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    margin: 0;
+    position: relative;
+  }
+  
+  #centros-list h2 strong {
+    position: relative;
+    z-index: 2;
+  }
+  
+  #centros-list h2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.3;
+  }
+  
+  .info {
+    padding: 1.5rem;
+    color: var(--muted);
+    font-size: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    position: relative;
+  }
+  
+  .info span {
+    position: relative;
+    padding-left: 1.75rem;
+    display: block;
+  }
+  
+  /* Add icons to info items */
+  .info span:nth-child(1)::before {
+    content: '📍';
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  
+  .info span:nth-child(4)::before {
+    content: '🕒';
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  
+  .info span:nth-child(7)::before {
+    content: '📞';
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  
+  /* Activities Section - VISUAL REDESIGN */
+  #centros-list > li > ul {
+    padding: 0 1.5rem 1.5rem;
+    display: grid;
+    gap: 1rem;
+  }
+  
+  .listas.actividades {
+    background-color: var(--muted-background);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    border-left: 4px solid var(--accent);
+  }
+  
+  .listas.actividades::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--accent), transparent);
+    opacity: 0;
+    transition: var(--transition);
+    z-index: 0;
+  }
+  
+  .listas.actividades:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+  }
+  
+  .listas.actividades:hover::before {
+    opacity: 0.05;
+  }
+  
+  .listas.actividades strong {
+    display: block;
+    margin-bottom: 0.75rem;
+    color: var(--foreground);
+    font-size: 1.1rem;
+    position: relative;
+    z-index: 1;
+    padding-left: 1.75rem;
+  }
+  
+  .listas.actividades strong::before {
+    content: '🎯';
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  
+  .listas.actividades .info {
+    padding: 0;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Activity info styling */
+  .listas.actividades .info span {
+    padding-left: 0;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    position: relative;
+  }
+  
+  /* Add visual indicators for activity details */
+  .listas.actividades .info span:nth-child(1)::after {
+    content: '';
+    position: absolute;
+    bottom: -0.25rem;
+    left: 0;
+    width: 2rem;
+    height: 2px;
+    background-color: var(--accent-dark);
+    opacity: 0.5;
+    border-radius: 1px;
+  }
+  
+  /* Add visual badges for dates and slots */
+  .listas.actividades .info span:nth-child(4),
+  .listas.actividades .info span:nth-child(7) {
+    display: inline-block;
+    background-color: rgba(79, 70, 229, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    margin-right: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--primary-dark);
+  }
+  
+  .listas.actividades .info span:nth-child(10) {
+    display: inline-block;
+    background-color: rgba(16, 185, 129, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.85rem;
+    color: var(--secondary-dark);
+  }
+  
+  /* Empty state for centers without activities */
+  #centros-list > li > ul:empty::before {
+    content: 'No hay actividades programadas actualmente';
+    display: block;
+    padding: 1rem;
+    text-align: center;
+    color: var(--muted);
+    font-style: italic;
+    background-color: var(--muted-background);
+    border-radius: var(--radius);
+  }
+  
+  /* Footer */
+  footer {
+    background-color: var(--foreground);
+    color: white;
+    padding: 3rem 2rem;
+    margin-top: 3rem;
+  }
+  
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .footer-links a {
+    color: #e5e7eb;
+    transition: var(--transition);
+    position: relative;
+  }
+  
+  .footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    transition: var(--transition);
+  }
+  
+  .footer-links a:hover {
+    color: white;
+  }
+  
+  .footer-links a:hover::after {
+    width: 100%;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column;
+      padding: 1rem;
+    }
+    
+    nav ul {
+      margin-top: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    
+    #centros-list {
+      grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    #centros-section > div:first-child h2 {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    html {
+      font-size: 14px;
+    }
+    
+    #mainBody {
+      padding: 1rem;
+    }
+    
+    .content {
+      padding: 1rem;
+    }
+    
+    nav ul {
+      gap: 0.5rem;
+    }
+    
+    nav ul li a {
+      padding: 0.4rem 0.6rem;
+      font-size: 0.9rem;
+    }
+    
+    #centros-list h2 {
+      font-size: 1.25rem;
+      padding: 1.25rem;
+    }
+    
+    .info {
+      padding: 1.25rem;
+    }
+    
+    .listas.actividades {
+      padding: 1rem;
+    }
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  @keyframes slideInRight {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  
+  #centros-list > li {
+    animation: fadeIn 0.6s ease-out forwards;
+    opacity: 0;
+  }
+  
+  .listas.actividades {
+    animation: slideInRight 0.5s ease-out forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+  }
+  
+  #centros-list > li:nth-child(1) { animation-delay: 0.1s; }
+  #centros-list > li:nth-child(2) { animation-delay: 0.2s; }
+  #centros-list > li:nth-child(3) { animation-delay: 0.3s; }
+  #centros-list > li:nth-child(4) { animation-delay: 0.4s; }
+  #centros-list > li:nth-child(5) { animation-delay: 0.5s; }
+  #centros-list > li:nth-child(6) { animation-delay: 0.6s; }
+  
+  /* Hover effects for cards */
+  #centros-list > li::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primary-light), transparent);
+    opacity: 0;
+    transition: var(--transition);
+    z-index: -1;
+    border-radius: var(--radius-lg);
+  }
+  
+  #centros-list > li:hover::after {
+    opacity: 0.03;
+  }

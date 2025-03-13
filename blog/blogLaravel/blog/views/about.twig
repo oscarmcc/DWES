@@ -1,0 +1,20 @@
+{% extends "layout.twig" %}
+
+
+{% block nav %}
+    <nav>
+        <ul class="navigation">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/login">Login</a></li>
+        </ul>
+    </nav>
+{% endblock %}
+
+{% block body %}
+    <h1>Esta página está dedicada a la subida de blog con la posibilidad de comentar estos. Y esta página muestra información sobre lo que va nuestra web</h1>
+{% endblock %}
+
+{% block sidebar %}
+    {% include "sidebar.twig" %}
+{% endblock %}

@@ -1,0 +1,16 @@
+RewriteEngine On
+
+# Si el archivo o directorio solicitado existe, no reescribimos la URL
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule .* - [L]
+
+# No reescribimos si estamos en test, css o img
+RewriteRule ^(test|css|img)(/.*)?$ - [L]
+
+# Todo lo demás va a index.php
+RewriteRule ^(.*)$ index.php [L]
+
+# Mantener autenticación si se usa HTTP Authorization
+RewriteCond %{HTTP:Authorization} ^(.+)$
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

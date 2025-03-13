@@ -1,24 +1,25 @@
 <?php
 
 namespace App\Core;
+
 class Router
 {
-    private $routes = array();
-
-    public function add($route)
-    {
-        $this->routes[] = $route;
+    private $routers = array();
+    public function add($route){
+        $this->routers[] = $route;
     }
 
-    public function match(string $request)
-    {
-        $matches = array();
-        foreach ($this->routes as $route) {
+    public function match (string $request) {
+         $matches = array();
+         foreach ($this->routers as $route) {
             $patron=$route['path'];
-            if (preg_match($patron, $request)){
+            if (preg_match($patron, $request)) {
                 $matches = $route;
             }
         }
-        return $matches;
+        return $matches; 
     }
+    
 }
+
+?>
