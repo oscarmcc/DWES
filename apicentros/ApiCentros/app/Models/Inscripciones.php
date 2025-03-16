@@ -125,7 +125,7 @@ class Inscripciones extends DBAbstractModel
 
     // Función para eliminar un usuario
     public function delete($id = ''){
-        $this->query = "DELETE FROM Inscripciones WHERE id = :id";
+        $this->query = "DELETE FROM inscripciones WHERE id = :id";
         $this->parametros['id'] = $id;
         $this->getResultFromQuery();
         $this->mensaje = 'Inscripción eliminada';
